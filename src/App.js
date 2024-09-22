@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from 'react'
+import Login from './main/Login';
+import Register from './main/Register';
+import Kendaraan from './main/Kendaraan';
+import Peminjaman from './main/Peminjaman';
+import Pengembalian from './main/Pengembalian';
+import PerKendaraan from './main/PerKendaraan';
+import Home from './main/Home';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter basename='/projectPTS12'>
+          <Routes>
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/kendaraan" element={<Kendaraan />} />
+            <Route path="/peminjaman" element={<Peminjaman />} />
+            <Route path="/kendaraan/:id" element={<PerKendaraan />} />
+            <Route path="/pengembalian/" element={<Pengembalian/>} />
+            <Route path="*" element={<h1>err</h1>} />
+          </Routes>
+        </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
