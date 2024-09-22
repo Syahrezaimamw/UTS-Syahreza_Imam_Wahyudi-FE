@@ -14,14 +14,14 @@ const CardKendaraan = ({dt}) => {
           alt="Product Image"
         />
       </div>
-      <div className={`absolute top-0 right-0 px-2 py-1 m-2 text-sm font-medium text-white ${dt.status ? 'bg-red-500/50' : "bg-cyan-500/50"} rounded-sm`}>
+      <div className={`absolute top-0 right-0 px-2 py-1 m-2 text-sm font-medium text-white ${dt.status ? 'bg-cyan-500/50 ' : " bg-red-500/50"} rounded-sm`}>
         {
-          dt.status ? 'Penuh' : "Kosong"
+          dt.status ? 'Kosong' : "Penuh"
         }
 
       </div>
     </div>
-    <div className="p-4">
+    <div className="px-4 py-3 pb-4 ">
       <h3 className="pb-1 mb-1 text-xl font-bold border-b-2">{dt.nama} <span className='text-sm'>({dt.merk})</span></h3>
       <div className='pb-1 mb-1 border-b-2'>
 
@@ -41,13 +41,14 @@ const CardKendaraan = ({dt}) => {
         <span className="mb-2 font-bold text-md">{convertToRp(dt.harga)} <span className='text-sm '></span></span>
         {
           dt.status ?
+          <Link to={`/kendaraan/${dt.id}`} className="flex justify-center px-2 py-1 font-bold text-white transition-all duration-75 rounded bg-gradient-to-l from-blue-400 to-cyan-300 hover:scale-105 hover:shadow-md">
+          Pinjam
+        </Link> :
+         
             <Link to={`/kendaraan/${dt.id}`} className="flex justify-center px-2 py-1 font-bold text-white transition-all duration-75 bg-gray-400 rounded hover:bg-red-600 hover:scale-105 hover:shadow-md">
-              Kembalikan
+            Kembalikan
 
-            </Link> :
-            <Link to={`/kendaraan/${dt.id}`} className="flex justify-center px-2 py-1 font-bold text-white transition-all duration-75 rounded bg-gradient-to-l from-blue-400 to-cyan-300 hover:scale-105 hover:shadow-md">
-              Peminjaman
-            </Link>
+          </Link>
 
         }
 

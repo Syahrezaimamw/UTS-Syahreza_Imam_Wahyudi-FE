@@ -12,14 +12,14 @@ const App = () => {
     <BrowserRouter basename='/projectPTS12'>
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Home />} />
             <Route path="/kendaraan" element={<Kendaraan />} />
             <Route path="/peminjaman" element={<Peminjaman />} />
             <Route path="/kendaraan/:id" element={<PerKendaraan />} />
             <Route path="/pengembalian/" element={<Pengembalian/>} />
-            <Route path="*" element={<h1>err</h1>} />
+            <Route path="*" element={<h1>tidak ada Page</h1>} />
           </Routes>
         </BrowserRouter>
   )

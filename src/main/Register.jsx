@@ -25,7 +25,7 @@ const Register = () => {
                     }
                 })
                     .then((response) => {
-                        window.location.href ='/login'
+                        window.location.href ='/projectPTS12/'
                         setLoading(false)
                     })
                     .catch((error) => {

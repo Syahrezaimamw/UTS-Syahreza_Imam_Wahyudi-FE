@@ -23,13 +23,13 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
    }
     return (
         <div className="font-[sans-serif]">
-            <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
-                <div className="grid md:grid-cols-2 items-center gap-4 max-w-6xl w-full">
+            <div className="flex items-center justify-center min-h-screen px-4 py-6 fle-col">
+                <div className="grid items-center w-full max-w-6xl gap-4 md:grid-cols-2">
                     <div className="border border-gray-300 rounded-sm p-6 max-w-[700px] sm:max-w-[500px] md:max-w-md  shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
                         <form className="space-y-4">
                             <div className="mb-8">
-                                <h3 className="text-gray-800 text-3xl font-extrabold">{title}</h3>
-                                <p className="text-gray-500 text-sm mt-4 leading-relaxed">
+                                <h3 className="text-3xl font-extrabold text-gray-800">{title}</h3>
+                                <p className="mt-4 text-sm leading-relaxed text-gray-500">
                                     {description}
                                 </p>
                             </div>
@@ -40,7 +40,7 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                                 title=='Register'?
                                 
                                 <div>
-                                <label className="text-gray-800 text-sm mb-2 block">
+                                <label className="block mb-2 text-sm text-gray-800">
                                   Username
                                 </label>
                                 <div className="relative flex items-center">
@@ -48,7 +48,7 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                                         name="nama"
                                         type="text"
                                         onChange={(e)=>handleChange(e)}
-                                        className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
+                                        className="w-full px-4 py-3 text-sm text-gray-800 border border-gray-300 rounded-lg outline-blue-600"
                                         placeholder="Enter Username"
                                     />
                                     <FaUser className="w-[18px]  text-gray-300 h-[18px] absolute right-4"
@@ -56,7 +56,7 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                             </div>:<></>
                                 }
                             <div>
-                                <label className="text-gray-800 text-sm mb-2 block">
+                                <label className="block mb-2 text-sm text-gray-800">
                                     email
                                 </label>
                                 <div className="relative flex items-center">
@@ -64,14 +64,14 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                                         name="email"
                                         type="email"
                                         onChange={(e)=>handleChange(e)}
-                                        className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
+                                        className="w-full px-4 py-3 text-sm text-gray-800 border border-gray-300 rounded-lg outline-blue-600"
                                         placeholder="Enter email"
                                     />
                                     <FaRegMap className="w-[18px]  text-gray-300 h-[18px] absolute right-4"
                                     />                    </div>
                             </div>
                             <div>
-                                <label className="text-gray-800 text-sm mb-2 block">Password</label>
+                                <label className="block mb-2 text-sm text-gray-800">Password</label>
                                 <div className="relative flex items-center">
                                     <input
                                         ref={pwref}
@@ -79,7 +79,7 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                                         type={showPw ? 'text' : 'password'}
                                         onChange={(e)=>handleChange(e)}
 
-                                        className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
+                                        className="w-full px-4 py-3 text-sm text-gray-800 border border-gray-300 rounded-lg outline-blue-600"
                                         placeholder="Enter password"
                                     />
                                     {
@@ -95,14 +95,14 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                                 title=='Register'?
                                 data.data.password ?
                                 <div>
-                                <label className="text-gray-800 text-sm mb-2 block">Confirm Password</label>
+                                <label className="block mb-2 text-sm text-gray-800">Confirm Password</label>
                                 <div className="relative flex items-center">
                                     <input
                                         ref={conpwref}
                                         name="confPassword"
                                         type={showConfPw ? 'text' : 'password'}
                                         onChange={(e)=>handleChange(e)}
-                                        className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
+                                        className="w-full px-4 py-3 text-sm text-gray-800 border border-gray-300 rounded-lg outline-blue-600"
                                         placeholder="Enter password"
                                     />
                                     {
@@ -118,7 +118,7 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                             :<></>
                             }
                             <div className="!mt-8">
-                                <Button handle={handle}>
+                                <Button fs={handle}>
                                     {
                                         loading?
                                         <Loading/>:
@@ -126,7 +126,7 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                                     }
                                     </Button>
                             </div>
-                            <p className='w-full text-center text-red-600 text-sm'>{err ? err : ''}</p>
+                            <p className='w-full text-sm text-center text-red-600'>{err ? err : ''}</p>
                             <p className="text-sm !mt-8 text-center text-gray-800">
                                 {
                                     title.toLowerCase() == 'register' ?
@@ -135,8 +135,8 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
 
                                 {
                                     title.toLowerCase() == 'register' ?
-                                        <Link to='/login' className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
-                                        >Login</Link> :  <Link to='/register' className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
+                                        <Link to='/' className="ml-1 font-semibold text-blue-600 hover:underline whitespace-nowrap"
+                                        >Login</Link> :  <Link to='/register' className="ml-1 font-semibold text-blue-600 hover:underline whitespace-nowrap"
                                         >Register</Link>
                                 }
 
@@ -147,7 +147,7 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                     <div className="lg:h-[400px] md:h-[300px] max-md:mt-8">
                         <img
                             src="https://readymadeui.com/login-image.webp"
-                            className="w-full h-full max-md:w-4/5 mx-auto block object-cover"
+                            className="block object-cover w-full h-full mx-auto max-md:w-4/5"
                             alt="Dining Experience"
                         />
                     </div>

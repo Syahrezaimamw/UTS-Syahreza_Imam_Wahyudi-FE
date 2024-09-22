@@ -42,7 +42,7 @@ const Dashboard = ({children,title}) => {
         {
             name: 'Sign in',
             ic: <FaRegUserCircle />,
-            to: '/login'
+            to: '/'
         },
         {
             name: 'Sign up',

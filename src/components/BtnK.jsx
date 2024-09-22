@@ -1,8 +1,8 @@
 import React from 'react'
 
-const BtnK = ({warna,children}) => {
+const BtnK = ({warna,fs,children}) => {
   return (
-    <button className={`px-3 py-2 font-medium text-white rounded-md shadow-lg ${warna}`}>{children}</button>
+    <button onClick={fs} className={`px-3 py-2 font-medium  hover:shadow-md active:scale-95 text-white rounded-md  ${warna}`}>{children}</button>
   )
 }
 
