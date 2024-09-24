@@ -1,19 +1,58 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Acces from '../template/Acces'
+import axios from 'axios'
+import { getAllDataKendaraan } from '../service/kendaraan'
 const Login = () => {
-    const [loading,setLoading] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [err, setErr] = useState()
-    const [data,setData]=useState({
-        email:'',
-        password:'',
+    const [data, setData] = useState({
+        email: '',
+        password: '',
     })
-    console.log(data)
+
+    const Auth = async (e) => {
+        setLoading(true)
+        try {
+            if (data.email === '' || data.password === '') {
+                setTimeout(() => {
+                    setErr('Pastikan Mengisi Semua Data')
+                    setLoading(false)
+
+                }, 1000)
+            } else {
+
+                axios.post('http://localhost:3100/admin/login', data, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then((response) => {
+                        // window.location.href = '/projectPTS12/home'
+                        setLoading(false)
+                    })
+                    .catch((error) => {
+                        setTimeout(() => {
+                            setLoading(false)
+                            setErr(error.response.data.message)
+
+                        }, 1500)
+                    });
+            }
+        } catch (err) {
+            setTimeout(() => {
+                setLoading(false)
+
+            }, 1500)
+            console.log(err)
+
+        }
+    }
 
 
     return (
         <div className=''>
-            <Acces title='Login' err={err} data={{data,setData}} description="Sign in with an existing Account to gain access">
+            <Acces title='Login' handle={Auth} err={err} loading={loading} data={{ data, setData }} description="Sign in with an existing Account to gain access">
 
             </Acces>
         </div>

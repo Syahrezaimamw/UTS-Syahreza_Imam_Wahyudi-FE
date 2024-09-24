@@ -12,6 +12,7 @@ import BtnK from '../components/BtnK';
 import Alert from '../components/Alert';
 import { handleAlerts } from '../service/alert';
 import Loading from '../components/Loading';
+import ModalUser from '../components/ModalUser';
 const PerKendaraan = () => {
     const [alerts, setAlerts] = useState([])
 
@@ -21,7 +22,7 @@ const PerKendaraan = () => {
     const [msg, setMsg] = useState('')
     const { id } = useParams()
     const [data, setData] = useState()
-    const [loadDel,setLoadDel]=useState(false)
+    const [loadDel, setLoadDel] = useState(false)
 
     useEffect(() => {
         getAllDataKendaraanById(id).then((result) => {
@@ -31,7 +32,6 @@ const PerKendaraan = () => {
 
 
     function handlePut() {
-        
         setLoading(true)
         if (data.nama === '' || data.merk === '' || data.harga == 0 || data.nomer_plat === '' || data.gambar == '' || data.kategori == '' || data.tipe == '' || data.warna == '') {
             setErr('pastikan semua input terisi')
@@ -39,7 +39,6 @@ const PerKendaraan = () => {
             handleAlerts(alerts, setAlerts)
             setTimeout(() => {
                 setLoading(false)
-                // setShowModal(false)
             }, 1000)
         } else {
             putKendaraan(data, id, (berhasil) => {
@@ -58,24 +57,28 @@ const PerKendaraan = () => {
 
 
         }
-        
-        
-        
+
+
+
     }
+    
     function ShowModelK() {
         setShowModal(true)
     }
-    function delKendaraan(){
+    
+    function delKendaraan() {
         setLoadDel(true)
-        deleteKendaraan(id,()=>{
-        },()=>{
+        deleteKendaraan(id, () => {
+        }, () => {
             setTimeout(() => {
                 window.location.href = '/projectPTS12/kendaraan'
                 setLoadDel(false)
-                // setShowModal(false)
             }, 2000)
         })
     }
+
+  
+    
     return (
         <Dashboard title={'Kendaraan'}>
             <Alert alerts={alerts} err={err}></Alert>
@@ -118,27 +121,27 @@ const PerKendaraan = () => {
                             <div className='flex items-center gap-2'>
                                 {
                                     data ?
-                                        data.status ? <BtnK fs={() =>delKendaraan()} warna='bg-red-500'>
-                                            {loadDel?
-                                           
-                                            <Loading/>: <FaTrash />
-                                        }
-                                            </BtnK> :
+                                        data.status ? <BtnK fs={() => delKendaraan()} warna='bg-red-500'>
+                                            {loadDel ?
+
+                                                <Loading /> : <FaTrash />
+                                            }
+                                        </BtnK> :
                                             <></>
                                         : <></>
                                 }
                                 <BtnK fs={() => ShowModelK()} warna='bg-gray-500'><FaPen /></BtnK>
                             </div>
                             {
-                                data?
-                                data.status ?
-                            <BtnK fs={() => console.log('tes')} warna='bg-cyan-400'>
-                                Pinjam
-                            </BtnK>:
-                            <BtnK fs={() => console.log('tes')} warna='bg-cyan-400'>
-                                Kembalikan
-                            </BtnK>
-                            :<></>
+                                data ?
+                                    data.status ?
+                                        <BtnK fs={() => console.log('tes')} warna='bg-cyan-400'>
+                                            Pinjam
+                                        </BtnK> :
+                                        <BtnK fs={() => console.log('tes')} warna='bg-cyan-400'>
+                                            Kembalikan
+                                        </BtnK>
+                                    : <></>
                             }
                         </div>
                     </div>

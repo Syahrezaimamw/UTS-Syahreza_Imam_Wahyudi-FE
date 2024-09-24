@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState } from 'react';
 import { FaRegFileAlt, FaRegFileArchive, FaRegUser, FaRegUserCircle } from 'react-icons/fa';
-import {  FaHouse, FaBars } from "react-icons/fa6";
+import { FaHouse, FaBars, FaCircleUser, FaRegCircleUser } from "react-icons/fa6";
 import { FaCar } from "react-icons/fa6";
 import img from '../image/logo.jpg'
 import { Link } from 'react-router-dom';
 
-const Dashboard = ({children,title}) => {
+const Dashboard = ({ children, title }) => {
     const [showProfile, setShowProfile] = useState(false)
     const [showSide, setShowSide] = useState(false)
 
@@ -30,27 +30,35 @@ const Dashboard = ({children,title}) => {
             to: '/kendaraan'
         },
         {
+            name: 'User',
+            ic: <FaRegCircleUser />,
+            to: '/user'
+        },
+        {
             name: 'Peminjaman',
             ic: <FaRegFileArchive />,
             to: '/peminjaman'
         },
         {
             name: 'Pengembalian',
-            ic: <FaRegFileAlt/>,
+            ic: <FaRegFileAlt />,
             to: '/pengembalian'
         },
-        {
-            name: 'Sign in',
-            ic: <FaRegUserCircle />,
-            to: '/'
-        },
-        {
-            name: 'Sign up',
-            ic: <FaRegUser />,
-            to: '/register'
-        },
+
     ]
 
+    function tanggal(){
+        const date = new Date();
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+
+        // This arrangement can be altered based on how we want the date's format to appear.
+        let currentDate = `${day}-${month}-${year}`;
+        return currentDate
+
+    }
 
     return (
         <>
@@ -69,13 +77,13 @@ const Dashboard = ({children,title}) => {
 
                             </button>
 
-                                <img
-                                    src={img}
-                                    className="relative h-[40px] bg-red-900 me-3"
-                                />
-                                <span className="self-center text-xl font-bold text-gray-800 sm:text-2xl whitespace-nowrap">
-                                    Pinjemin
-                                </span>
+                            <img
+                                src={img}
+                                className="relative h-[40px] bg-red-900 me-3"
+                            />
+                            <span className="self-center text-xl font-bold text-gray-800 sm:text-2xl whitespace-nowrap">
+                                Pinjemin
+                            </span>
                         </div>
 
 
@@ -115,20 +123,20 @@ const Dashboard = ({children,title}) => {
                                     </div>
                                     <ul className="py-1" role="none">
                                         {
-                                            data.map((a,i)=>(
-                                                
-                                        <li key={i}>
-                                            <a
-                                                href="#"
-                                                className="block px-4 py-2 text-sm text-gray-700 dark:hover:bg-gray-600 hover:text-white"
-                                                role="menuitem"
-                                            >
-                                                {a.name}
-                                            </a>
-                                        </li>
+                                            data.map((a, i) => (
+
+                                                <li key={i}>
+                                                    <a
+                                                        href="#"
+                                                        className="block px-4 py-2 text-sm text-gray-700 hover:text-gray-300 hover:bg-gray-600 "
+                                                        role="menuitem"
+                                                    >
+                                                        {a.name}
+                                                    </a>
+                                                </li>
                                             ))
                                         }
-                                       
+
                                     </ul>
                                 </div>
                             </div>
@@ -146,12 +154,12 @@ const Dashboard = ({children,title}) => {
                     <ul className="space-y-2 font-medium ">
                         {
                             data.map((a, i) => (
-                                <li  key={i} className='cursor-pointer'>
+                                <li key={i} className='cursor-pointer'>
                                     <Link to={a.to}>
-                                    <div className={`${a.name == title ? 'bg-white shadow-lg py-2.5 ':''}flex hover:shadow-lg hover:bg-white items-center gap-2 p-2 text-white rounded-lg  group`}>
-                                        <span className={`${a.name == title?'bg-cyan-400  group-hover:text-white':'bg-white '}flex items-center shadow-md justify-center p-3 transition group-hover:bg-cyan-400 group-hover:text-white duration-75 rounded-lg text-md  bg-cyan text-gray-400 `}><i className={`${a.name == title?'text-white  ':'text-gray-900 group-hover:text-white '}`}>{a.ic}</i></span>
-                                        <span className={` ${a.name == title?'text-black':'text-gray-600 group-hover:text-black'} font-semibold  m7-3`}>{a.name}</span>
-                                    </div>
+                                        <div className={`${a.name == title ? 'bg-white shadow-lg py-2.5 ' : ''}flex hover:shadow-lg hover:bg-white items-center gap-2 p-2 text-white rounded-lg  group`}>
+                                            <span className={`${a.name == title ? 'bg-cyan-400  group-hover:text-white' : 'bg-white '}flex items-center shadow-md justify-center p-3 transition group-hover:bg-cyan-400 group-hover:text-white duration-75 rounded-lg text-md  bg-cyan text-gray-400 `}><i className={`${a.name == title ? 'text-white  ' : 'text-gray-900 group-hover:text-white '}`}>{a.ic}</i></span>
+                                            <span className={` ${a.name == title ? 'text-black' : 'text-gray-600 group-hover:text-black'} font-semibold  m7-3`}>{a.name}</span>
+                                        </div>
                                     </Link>
                                 </li>
                             ))
@@ -161,10 +169,7 @@ const Dashboard = ({children,title}) => {
 
                     </ul>
                     <div className='px-4 py-4 text-white rounded-lg bg-gradient-to-l from-blue-400 to-cyan-300'>
-                        <div className='flex items-center justify-center bg-white rounded-lg size-8'>s</div>
-                        <p className='mt-2 font-bold'>Contact To Me ?</p>
-                        <button className='w-full h-[35px] mt-2 font-semibold text-gray-600 bg-white rounded-lg'>Send</button>
-                        
+                        <p className='font-bold text-center '>{tanggal()}</p>
                     </div>
                 </div>
             </aside>
@@ -176,7 +181,7 @@ const Dashboard = ({children,title}) => {
                 <div className="p-4 border-gray-200 rounded-lg mt-14">
 
 
-{children}
+                    {children}
 
                 </div>
             </div>

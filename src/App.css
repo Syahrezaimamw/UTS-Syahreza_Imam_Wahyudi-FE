@@ -1,0 +1,14 @@
+.custom-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Untuk Firefox */
+  .custom-scrollbar {
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Tetap memungkinkan scroll dengan menyembunyikan scrollbar */
+  .custom-scrollbar {
+    -ms-overflow-style: none; /* IE 10+ */
+    overflow-y: scroll;
+  }
