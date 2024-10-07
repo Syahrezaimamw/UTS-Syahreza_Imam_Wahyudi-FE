@@ -19,7 +19,7 @@ const Table = ({ title, headers,children }) => {
 
                         </div>
                         <p className="mt-1 text-sm font-normal text-gray-800 ">
-                            Detail data user
+                            Tabel ini berisi data User 
                         </p>
                     </caption>
                     <thead className="text-xs text-white uppercase bg-cyan-300">

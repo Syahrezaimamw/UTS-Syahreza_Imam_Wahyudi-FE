@@ -20,3 +20,18 @@ export const getAllDataById=async(url)=>{
     })
   } 
   
+export const getAllPeminjamanSekarang=async(id)=>{
+
+    return await  axios.get('http://localhost:3100/peminjaman/')
+    .then(function (response) {
+     const data = response.data.datas;
+
+     const dataFilter = data.filter((item,i)=>item.status === true && item.KendaraanId == id)
+     return dataFilter[0]
+    })
+    .catch(function (error) {
+      console.log( error)
+      return error ;
+    })
+  } 
+  

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Dashboard from '../template/Dashboard'
 import { Link } from 'react-router-dom';
@@ -12,24 +12,46 @@ import BtnK from '../components/BtnK';
 import Alert from '../components/Alert';
 import { handleAlerts } from '../service/alert';
 import Loading from '../components/Loading';
-import ModalUser from '../components/ModalUser';
+import ModalPeminjaman from '../components/ModalPeminjaman';
+import { postDataAllTable } from '../service/post';
+import ModalPengembalian from '../components/ModalPengembalian';
+import { AdminContext } from '../contex/adminContex';
+import { getAllPeminjamanSekarang } from '../service/get';
 const PerKendaraan = () => {
-    const [alerts, setAlerts] = useState([])
-
-    const [err, setErr] = useState(false)
-    const [showModal, setShowModal] = useState(false)
-    const [loading, setLoading] = useState(false)
-    const [msg, setMsg] = useState('')
     const { id } = useParams()
-    const [data, setData] = useState()
+
+
+    //! message
+    const [alerts, setAlerts] = useState([])
+    const [err, setErr] = useState(false)
+
+    //? loading
+    const [loading, setLoading] = useState(false)
     const [loadDel, setLoadDel] = useState(false)
+
+    //? Modal
+    const [showModal, setShowModal] = useState(false)
+    const [showModalPeminjaman, setShowModalPeminjaman] = useState(false)
+    const [showModalPengembalian, setShowModalPengembalian] = useState(false)
+
+    //? data kendaraan
+    const [data, setData] = useState()
+
+    //? data Pengembalian
+    const [dataPmjnForPngmbln, setDataPmjnForPngmbln] = useState()
+    const [dataPengembalian, setDataPengembalian] = useState({
+        tanggal_dikembalikan: '',
+        denda: 0,
+        kondisi: '',
+    })
+
 
     useEffect(() => {
         getAllDataKendaraanById(id).then((result) => {
             setData(result)
         })
+        getAllPeminjamanSekarang(id).then((result) => setDataPmjnForPngmbln(result))
     }, [])
-
 
     function handlePut() {
         setLoading(true)
@@ -43,7 +65,6 @@ const PerKendaraan = () => {
         } else {
             putKendaraan(data, id, (berhasil) => {
                 setLoading(true)
-                setMsg(berhasil)
                 setTimeout(() => {
                     window.location.href = '/projectPTS12/kendaraan/' + id
                     setLoading(false)
@@ -61,11 +82,11 @@ const PerKendaraan = () => {
 
 
     }
-    
+
     function ShowModelK() {
         setShowModal(true)
     }
-    
+
     function delKendaraan() {
         setLoadDel(true)
         deleteKendaraan(id, () => {
@@ -77,8 +98,70 @@ const PerKendaraan = () => {
         })
     }
 
-  
-    
+
+    //* PEMINJAMAN
+    const [idAdmin,setIdAdmin] =useState(localStorage.IA ? localStorage.IA : 18)
+
+    const [dataPeminjaman, setDataPeminjaman] = useState({
+        tanggal_peminjaman: '',
+        tanggal_pengembalian: '',
+        total_harga: 0,
+        status: true,
+        AdminId: idAdmin,
+        UserId: 0,
+        KendaraanId: parseInt(id),
+    })
+
+
+    function handleModalPeminjman() {
+        setShowModalPeminjaman(true)
+
+    }
+
+    const [total, setTotal] = useState(0)
+
+    function postDataPeminjaman() {
+        setLoading(true)
+        const dataPost = { ...dataPeminjaman, total_harga: total }
+        const url = 'http://localhost:3100/peminjaman/create'
+        postDataAllTable(url, dataPost, (berhasil) => {
+            setTimeout(() => {
+
+                window.location.href = '/projectPTS12/kendaraan/' + id
+            }, 1000)
+        }, (gagal) => {
+            setTimeout(() => {
+
+                setLoading(false)
+            }, 1000)
+            console.log(gagal)
+        }
+        )
+
+        console.log(dataPost)
+
+    }
+    function postDataPengembalian() {
+        setLoading(true)
+        const dataPost = { ...dataPengembalian, PeminjamanId: dataPmjnForPngmbln.id }
+        const url = 'http://localhost:3100/pengembalian/create'
+        postDataAllTable(url, dataPost, (berhasil) => {
+            setTimeout(() => {
+
+                window.location.href = '/projectPTS12/kendaraan/' + id
+            }, 1000)
+        }, (gagal) => {
+            setTimeout(() => {
+                setLoading(false)
+
+            }, 1000)
+            console.log(gagal)
+        }
+        )
+
+        console.log(dataPost)
+
+    }
     return (
         <Dashboard title={'Kendaraan'}>
             <Alert alerts={alerts} err={err}></Alert>
@@ -89,6 +172,9 @@ const PerKendaraan = () => {
                 : <></>
 
             }
+            <ModalPeminjaman title={'Add Peminjaman'} dataKendara={data ? data : ''} loading={loading} setTotal={setTotal} harga_sewa={data ? data.harga : 0} modal={{ showModal: showModalPeminjaman, setShowModal: setShowModalPeminjaman }} data={{ dataPeminjaman, setDataPeminjaman }} handle={postDataPeminjaman}></ModalPeminjaman>
+
+            <ModalPengembalian title={'Add Pengembalian'} data={{ dataPengembalian, setDataPengembalian }} dataPeminjaman={dataPmjnForPngmbln} modal={{ showModal: showModalPengembalian, setShowModal: setShowModalPengembalian }} loading={loading} handle={postDataPengembalian}></ModalPengembalian>
 
 
             <div className='flex gap-2 items-center [&_h1]:font-semibold [&_span]:font-medium [&_span]:text-[12px]  [&_span]:pt-[2px]   [&_h1]:text-md [&_h1]:hover:cursor-pointer'> <h1 className=''><Link to='/kendaraan'>
@@ -135,10 +221,10 @@ const PerKendaraan = () => {
                             {
                                 data ?
                                     data.status ?
-                                        <BtnK fs={() => console.log('tes')} warna='bg-cyan-400'>
+                                        <BtnK fs={handleModalPeminjman} warna='bg-cyan-400'>
                                             Pinjam
                                         </BtnK> :
-                                        <BtnK fs={() => console.log('tes')} warna='bg-cyan-400'>
+                                        <BtnK fs={() => setShowModalPengembalian(true)} warna='bg-cyan-400'>
                                             Kembalikan
                                         </BtnK>
                                     : <></>

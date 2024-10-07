@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react'
 import Acces from '../template/Acces'
 import axios from 'axios';
-// import { useHistory } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
+    const navigate = useNavigate();
     const [err, setErr] = useState()
     const [loading, setLoading] = useState(false)
 
@@ -25,7 +26,7 @@ const Register = () => {
                     }
                 })
                     .then((response) => {
-                        window.location.href ='/projectPTS12/'
+                       navigate('/')
                         setLoading(false)
                     })
                     .catch((error) => {

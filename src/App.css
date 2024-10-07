@@ -12,3 +12,26 @@
     -ms-overflow-style: none; /* IE 10+ */
     overflow-y: scroll;
   }
+
+
+  
+  .css-4ljt47-MenuList {
+    scrollbar-width: none; /* Scrollbar yang lebih tipis (Firefox) */
+    scrollbar-color: rgb(38, 198, 218) #f3e8ff; /* Warna scrollbar untuk Firefox */
+  }
+  
+  /* Scrollbar untuk WebKit (Chrome, Safari, Edge) */
+  .css-4ljt47-MenuList::-webkit-scrollbar {
+    width: 8px; /* Lebar scrollbar */
+  }
+  
+  .css-4ljt47-MenuList::-webkit-scrollbar-track {
+    background: #f3e8ff; /* Warna track (background dari scrollbar) */
+  }
+  
+  .css-4ljt47-MenuList::-webkit-scrollbar-thumb {
+    background-color: #6b52ae; /* Warna scrollbar */
+    border-radius: 10px; /* Radius untuk membuat sudut membulat */
+    border: 2px solid #f3e8ff; /* Border di sekitar thumb scrollbar */
+  }
+  

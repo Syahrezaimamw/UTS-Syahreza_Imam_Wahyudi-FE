@@ -25,7 +25,6 @@ const PerKembalian = () => {
             doc.save(`Rekap Penyewaan Kendaraan PT.Pinjemin Atas Nama ${data.nama} .pdf`)
         })
     }
-    // console.log(data.Kendaraan)
     return (
         <div className='flex items-center w-full h-screen'>
 
@@ -34,7 +33,6 @@ const PerKembalian = () => {
                     <div
                         className="hs-overlay flex bg-black/50 items-center size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto "
                     >
-                        {/* Button */}
                         <div className="absolute flex justify-end mt-5 right-5 bottom-10 gap-x-2">
                             <button
 
@@ -62,9 +60,9 @@ const PerKembalian = () => {
                         </div>
 
                         <div id='topdf' className="m-3 mt-0 transition-all ease-out opacity-1 hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 sm:max-w-lg sm:w-full sm:mx-auto">
-                            <div className='absolute bg-white/90 flex items-center justify-center left-5 top-10 size-[40px] rounded-full'>
-                            <Link to='/pengembalian/'><FaAngleLeft/></Link>
-                            </div>
+                            <Link to='/pengembalian/' className='absolute bg-white/90 flex items-center justify-center left-5 top-10 size-[40px] rounded-full'>
+                            <FaAngleLeft/>
+                            </Link>
                             <div className="relative flex flex-col bg-white shadow-lg pointer-events-auto rounded-xl ">
                                 <div className="relative overflow-hidden text-center bg-gray-900 min-h-32 rounded-t-xl ">
                                     {/* Close Button */}

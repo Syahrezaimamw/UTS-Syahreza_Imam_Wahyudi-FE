@@ -6,21 +6,21 @@ const Home = () => {
   const [name,setName]=useState()
   const [token,setToken]=useState()
 
-  useEffect(()=>{
-    refresToken()
+  // useEffect(()=>{
+  //   refresToken()
     
-  },[])
-  const refresToken=async()=>{
-    try{
-      const response = await axios.get('http://localhost:3100/admin/token')
-      // setToken(response.data.accesToken)
-      // const decode = jwtDecode(response.data.accesToken)
-      console.log(response)
-    }catch{
+  // },[])
+  // const refresToken=async()=>{
+  //   try{
+  //     const response = await axios.get('http://localhost:3100/admin/token')
+  //     // setToken(response.data.accesToken)
+  //     // const decode = jwtDecode(response.data.accesToken)
+  //     console.log(response)
+  //   }catch{
       
-    }
+  //   }
     
-  }
+  // }
   
   return (
     <Dashboard title={'Home'}>

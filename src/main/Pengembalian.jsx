@@ -7,20 +7,19 @@ import Table from '../template/Table'
 import Column from '../components/Column'
 import { convertToRp } from '../service/currency'
 const Pengembalian = () => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState()
   useEffect(() => {
     const url = 'http://localhost:3100/pengembalian/'
     getAllData(url).then((data, i) => setData(data))
   }, [])
 
   const headTable = [
+    { judul: "kendaraan" },
     { judul: "tgl_dikembalikan" },
     { judul: "tGL_peminjaman" },
     { judul: "tgl_pengembalian" },
     { judul: "nama_peminjam" },
-    { judul: "kendaraan" },
     { judul: "Admin" },
-    { judul: "denda" },
     { judul: "total" },
   ]
   return (
@@ -31,33 +30,30 @@ const Pengembalian = () => {
           data ?
             data.map((item, i) => (
               <tr key={i} className="bg-white border-b ">
+                   <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                >
+                  <Link to={`/kendaraan/${item.Peminjaman.Kendaraan.id}`}>{item.Peminjaman.Kendaraan.nama}</Link>
+                </th>
                 <Column value={item.tanggal_dikembalikan.substring(0, 10)} />
                 <Column value={item.Peminjaman.tanggal_peminjaman.substring(0, 10)} />
                 <Column value={item.Peminjaman.tanggal_pengembalian.substring(0, 10)} />
-                <Column value={item.Peminjaman.User.nama} />
-                <Column value={<Link to={`/kendaraan/${item.Peminjaman.Kendaraan.id}`}>{item.Peminjaman.Kendaraan.nama}</Link>} />
+                <Column value={`${item.Peminjaman.User.nama} (${item.Peminjaman.User.no_ktp})`} />
                 <Column value={item.Peminjaman.Admin.nama} />
-                <Column value={convertToRp(item.denda)} />
-                <Column value={ convertToRp(item.Peminjaman.total_harga + item.denda)} />
-                <Column value={   <p className='flex items-center gap-3'>
-                  
-                 <span
+                <Column value={convertToRp(item.Peminjaman.total_harga + item.denda)} />
+                <Column value={<p className='flex items-center gap-3'>
+
+            
+                  <span
                     href="#"
-                    // onClick={(() => showModelPut(item.id))}
-                    className="font-medium cursor-pointer text-cyan-500 hover:underline"
-                  >
-                    Edit
-                  </span>
-                 <span
-                    href="#"
-                    // onClick={(() => showModelPut(item.id))}
                     className="font-medium text-gray-500 cursor-pointer hover:underline"
                   >
                     <Link to={`/pengembalian/${item.id}`}>
-                    View
+                      View
                     </Link>
                   </span>
-                  </p>
+                </p>
                 } />
               </tr>
             )) :

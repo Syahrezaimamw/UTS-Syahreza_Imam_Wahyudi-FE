@@ -5,6 +5,7 @@ import { fixHandle } from '../service/fixHandle';
 import { postKendaraan } from '../service/kendaraan';
 import Loading from './Loading';
 import Modal from '../template/Modal';
+import Input from './Input';
 const ModalKendaraan = ({ title, modal, dataK, handlePost, loading, teks }) => {
     function handleChange(e) {
         const newData = { ...dataK.dataK }
@@ -20,48 +21,48 @@ const ModalKendaraan = ({ title, modal, dataK, handlePost, loading, teks }) => {
                 <div className='flex justify-between w-full'>
 
                     <div className='w-[48%]'>
-                        <InputKendaraan name='nama' value={dataK.dataK.nama} change={(e) => handleChange(e)} type={'text'} title={'Masukan Nama'}></InputKendaraan>
+                        <Input name='nama' value={dataK.dataK.nama} change={(e) => handleChange(e)} type={'text'} title={'Masukan Nama'}></Input>
 
                     </div>
                     <div className='w-[48%]'>
-                        <InputKendaraan name='tipe' value={dataK.dataK.tipe} change={(e) => handleChange(e)} type={'text'} title={'Masukan Type'}></InputKendaraan>
+                        <Input name='tipe' value={dataK.dataK.tipe} change={(e) => handleChange(e)} type={'text'} title={'Masukan Type'}></Input>
 
                     </div>
                 </div>
                 <div className='flex justify-between w-full'>
 
                     <div className='w-[48%]'>
-                        <InputKendaraan name='warna' value={dataK.dataK.warna} change={(e) => handleChange(e)} type={'text'} title={'Masukan Warna'}></InputKendaraan>
+                        <Input name='warna' value={dataK.dataK.warna} change={(e) => handleChange(e)} type={'text'} title={'Masukan Warna'}></Input>
 
                     </div>
                     <div className='w-[48%]'>
-                        <InputKendaraan name='merk' value={dataK.dataK.merk} change={(e) => handleChange(e)} type={'text'} title={'Masukan Merek'}></InputKendaraan>
+                        <Input name='merk' value={dataK.dataK.merk} change={(e) => handleChange(e)} type={'text'} title={'Masukan Merek'}></Input>
 
                     </div>
                 </div>
                 <div className='flex justify-between w-full'>
 
                     <div className='w-[48%]'>
-                        <InputKendaraan name='nomer_plat' value={dataK.dataK.nomer_plat} change={(e) => handleChange(e)} type={'text'} title={'Masukan Nomer Plat'}></InputKendaraan>
+                        <Input name='nomer_plat' value={dataK.dataK.nomer_plat} change={(e) => handleChange(e)} type={'text'} title={'Masukan Nomer Plat'}></Input>
 
                     </div>
                     <div className='w-[48%]'>
-                        <InputKendaraan name='tahun_pembuatan' value={dataK.dataK.tahun_pembuatan} change={(e) => handleChange(e)} type={'text'} title={'Masukan Tahun_Pembuatan'}></InputKendaraan>
+                        <Input name='tahun_pembuatan' value={dataK.dataK.tahun_pembuatan} change={(e) => handleChange(e)} type={'number'} title={'Masukan Tahun_Pembuatan'}></Input>
 
                     </div>
                 </div>
                 <div className='flex justify-between w-full'>
 
                     <div className='w-[48%]'>
-                        <InputKendaraan name='kategori' value={dataK.dataK.kategori} change={(e) => handleChange(e)} type={'text'} title={'Masukan Kategori'}></InputKendaraan>
+                        <Input name='kategori' value={dataK.dataK.kategori} change={(e) => handleChange(e)} type={'text'} title={'Masukan Kategori'}></Input>
 
                     </div>
                     <div className='w-[48%]'>
-                        <InputKendaraan name='harga' value={dataK.dataK.harga} change={(e) => handleChange(e)} type={'number'} title={'Masukan Harga'}></InputKendaraan>
+                        <Input name='harga' value={dataK.dataK.harga} change={(e) => handleChange(e)} type={'number'} title={'Masukan Harga'}></Input>
 
                     </div>
                 </div>
-                <InputKendaraan name='gambar' value={dataK.dataK.gambar} change={(e) => handleChange(e)} type={'text'} title={'Masukan Link Gambar'}></InputKendaraan>
+                <Input name='gambar' value={dataK.dataK.gambar} change={(e) => handleChange(e)} type={'text'} title={'Masukan Link Gambar'}></Input>
 
                 <button className='w-full py-2 text-white rounded rounded-lgmibold bg-cyan-400'
                     onClick={handlePost}>

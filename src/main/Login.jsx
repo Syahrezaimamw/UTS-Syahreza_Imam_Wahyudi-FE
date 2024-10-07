@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Acces from '../template/Acces'
 import axios from 'axios'
-import { getAllDataKendaraan } from '../service/kendaraan'
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
 
     const [err, setErr] = useState()
@@ -22,13 +23,14 @@ const Login = () => {
                 }, 1000)
             } else {
 
-                axios.post('http://localhost:3100/admin/login', data, {
+                axios.post('http://localhost:3100/admin/loginB', data, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
                     .then((response) => {
-                        // window.location.href = '/projectPTS12/home'
+                        localStorage.setItem("IA", response.data.datas);
+                        navigate('/home')
                         setLoading(false)
                     })
                     .catch((error) => {

@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { FaRegFileAlt, FaRegFileArchive, FaRegUser, FaRegUserCircle } from 'react-icons/fa';
-import { FaHouse, FaBars, FaCircleUser, FaRegCircleUser } from "react-icons/fa6";
+import { FaRegFileAlt, FaRegFileArchive } from 'react-icons/fa';
+import { FaHouse, FaBars, FaRegCircleUser } from "react-icons/fa6";
 import { FaCar } from "react-icons/fa6";
 import img from '../image/logo.jpg'
 import { Link } from 'react-router-dom';
+import { getAllDataById } from '../service/get';
+import { useNavigate } from 'react-router-dom';
+import { AdminContext } from '../contex/adminContex';
+
 
 const Dashboard = ({ children, title }) => {
+    const navigate = useNavigate();
     const [showProfile, setShowProfile] = useState(false)
     const [showSide, setShowSide] = useState(false)
 
@@ -17,6 +22,15 @@ const Dashboard = ({ children, title }) => {
         setShowSide(showSide ? false : true)
 
     }
+
+
+
+    const [idAdmin, setIdAdmin] = useState(localStorage.IA ? localStorage.IA : 18)
+    const [admin, setAdmin] = useState()
+    useEffect(() => {
+        getAllDataById('http://localhost:3100/admin/find/' + idAdmin).then((a, i) => setAdmin(a))
+    }, [])
+
 
     const data = [
         {
@@ -47,21 +61,21 @@ const Dashboard = ({ children, title }) => {
 
     ]
 
-    function tanggal(){
+    function tanggal() {
         const date = new Date();
 
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
 
-        // This arrangement can be altered based on how we want the date's format to appear.
         let currentDate = `${day}-${month}-${year}`;
         return currentDate
 
     }
+    // console.log(admin)
 
     return (
-        <>
+        <AdminContext.Provider value={admin}>
             <nav className="fixed top-0 z-50 w-full h-[69px] bg-white/[99] border-b border-gray-900 ">
                 <div className="h-full px-3 py-4 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
@@ -112,13 +126,14 @@ const Dashboard = ({ children, title }) => {
                                             className="text-sm text-gray-900 "
                                             role="none"
                                         >
-                                            Neil Sims
+                                            {admin ? admin.nama : '--'}
                                         </p>
                                         <p
                                             className="text-sm font-medium text-gray-900 truncate "
                                             role="none"
                                         >
-                                            neil.sims@flowbite.com
+                                            {admin ? admin.email : '--'}
+
                                         </p>
                                     </div>
                                     <ul className="py-1" role="none">
@@ -126,16 +141,28 @@ const Dashboard = ({ children, title }) => {
                                             data.map((a, i) => (
 
                                                 <li key={i}>
-                                                    <a
-                                                        href="#"
+                                                    <Link
+                                                        to={a.to}
                                                         className="block px-4 py-2 text-sm text-gray-700 hover:text-gray-300 hover:bg-gray-600 "
-                                                        role="menuitem"
+
                                                     >
                                                         {a.name}
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             ))
                                         }
+                                        <li className='cursor-pointer' onClick={(a, i) => {
+                                            localStorage.removeItem("IA");
+                                            navigate('/');
+                                        }}>
+                                            <a
+
+                                                className="block px-4 py-2 text-sm text-gray-700 hover:text-gray-300 hover:bg-gray-600 "
+
+                                            >
+                                                Logout
+                                            </a>
+                                        </li>
 
                                     </ul>
                                 </div>
@@ -185,7 +212,7 @@ const Dashboard = ({ children, title }) => {
 
                 </div>
             </div>
-        </>
+        </AdminContext.Provider>
 
     )
 }

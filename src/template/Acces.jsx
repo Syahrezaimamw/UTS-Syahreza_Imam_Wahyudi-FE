@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '../components/Button'
 import { useState } from 'react';
 import { useRef } from 'react';
-import { FaRegMap } from "react-icons/fa6";
+import { FaEnvelope } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
@@ -67,7 +67,7 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                                         className="w-full px-4 py-3 text-sm text-gray-800 border border-gray-300 rounded-lg outline-blue-600"
                                         placeholder="Enter email"
                                     />
-                                    <FaRegMap className="w-[18px]  text-gray-300 h-[18px] absolute right-4"
+                                    <FaEnvelope className="w-[18px]  text-gray-300 h-[18px] absolute right-4"
                                     />                    </div>
                             </div>
                             <div>
@@ -135,8 +135,8 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
 
                                 {
                                     title.toLowerCase() == 'register' ?
-                                        <Link to='/' className="ml-1 font-semibold text-blue-600 hover:underline whitespace-nowrap"
-                                        >Login</Link> :  <Link to='/register' className="ml-1 font-semibold text-blue-600 hover:underline whitespace-nowrap"
+                                        <Link to='/' className="ml-1 font-semibold text-gray-900 hover:underline whitespace-nowrap"
+                                        >Login</Link> :  <Link to='/register' className="ml-1 font-semibold text-gray-900 hover:underline whitespace-nowrap"
                                         >Register</Link>
                                 }
 
