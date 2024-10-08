@@ -210,7 +210,7 @@ const PerKendaraan = () => {
                                         data.status ? <BtnK fs={() => delKendaraan()} warna='bg-red-500'>
                                             {loadDel ?
 
-                                                'Tunggu' : <FaTrash />
+                                                'Tunggu...' : <FaTrash />
                                             }
                                         </BtnK> :
                                             <></>
