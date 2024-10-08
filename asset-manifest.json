@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/UTS-Syahreza_Imam_Wahyudi-FE/static/css/main.6f54b46c.css",
-    "main.js": "/UTS-Syahreza_Imam_Wahyudi-FE/static/js/main.f8b847ea.js",
+    "main.css": "/UTS-Syahreza_Imam_Wahyudi-FE/static/css/main.3c0e0791.css",
+    "main.js": "/UTS-Syahreza_Imam_Wahyudi-FE/static/js/main.64f59d4c.js",
     "static/js/213.960de51b.chunk.js": "/UTS-Syahreza_Imam_Wahyudi-FE/static/js/213.960de51b.chunk.js",
     "static/js/455.e7bb487f.chunk.js": "/UTS-Syahreza_Imam_Wahyudi-FE/static/js/455.e7bb487f.chunk.js",
+    "static/media/logo.png": "/UTS-Syahreza_Imam_Wahyudi-FE/static/media/logo.5a6b2910125cff558e51.png",
     "index.html": "/UTS-Syahreza_Imam_Wahyudi-FE/index.html",
-    "main.6f54b46c.css.map": "/UTS-Syahreza_Imam_Wahyudi-FE/static/css/main.6f54b46c.css.map",
-    "main.f8b847ea.js.map": "/UTS-Syahreza_Imam_Wahyudi-FE/static/js/main.f8b847ea.js.map",
+    "main.3c0e0791.css.map": "/UTS-Syahreza_Imam_Wahyudi-FE/static/css/main.3c0e0791.css.map",
+    "main.64f59d4c.js.map": "/UTS-Syahreza_Imam_Wahyudi-FE/static/js/main.64f59d4c.js.map",
     "213.960de51b.chunk.js.map": "/UTS-Syahreza_Imam_Wahyudi-FE/static/js/213.960de51b.chunk.js.map",
     "455.e7bb487f.chunk.js.map": "/UTS-Syahreza_Imam_Wahyudi-FE/static/js/455.e7bb487f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f54b46c.css",
-    "static/js/main.f8b847ea.js"
+    "static/css/main.3c0e0791.css",
+    "static/js/main.64f59d4c.js"
   ]
 }
