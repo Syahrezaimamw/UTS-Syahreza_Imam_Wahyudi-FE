@@ -53,7 +53,7 @@ const User = () => {
             postDataUser(dataU, (berhasil) => {
                 setTimeout(() => {
                     setLoading(false)
-                    window.location.href = '/projectPTS12/user'
+                    window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/user'
                 }, 500)
                 console.log(berhasil)
             }, (gagal) => {
@@ -112,12 +112,14 @@ const User = () => {
     return (
         <Dashboard title="User">
             <Alert err={err} alerts={alerts} ></Alert>
+            <div className='flex justify-end w-full'>
+                
+            <button onClick={handleShowModal} className='px-3 py-1 text-white rounded-md bg-cyan-500 active:scale-95'>
 
-            {/* <button onClick={handleShowModal} className='underline hover:text-cyan-400 active:scale-95'>
 
-
-Add
-</button> */}
+                Add
+            </button>
+            </div>
             <ModalUser teks='Add Data Users' title='Add Data User ' loading={loading} handlePost={postData} dataU={{ dataU, setDataU }} modal={{ showModal, setShowModal }}></ModalUser>
             <ModalUser teks='Update Data Users' title='Update Data User ' loading={loading} handlePost={handlePut} dataU={{ dataU: dataUe, setDataU: setDataUe }} modal={{ showModal: showModalUpdate, setShowModal: setShowModalUpdate }}></ModalUser>
 
@@ -132,18 +134,18 @@ Add
                                 >
                                     {item.nama}
                                 </th>
-                                <Column value={item.telephone}/>
-                                <Column value={item.email}/>
-                                <Column value={item.alamat}/>
-                                <Column value={item.no_ktp}/>
-                                <Column value={ <p
-                                        href="#"
-                                        onClick={(() => showModelPut(item.id))}
-                                        className="font-medium cursor-pointer text-cyan-500 hover:underline"
-                                    >
-                                        Edit
-                                    </p>}/>
-                                
+                                <Column value={item.telephone} />
+                                <Column value={item.email} />
+                                <Column value={item.alamat} />
+                                <Column value={item.no_ktp} />
+                                <Column value={<p
+                                    href="#"
+                                    onClick={(() => showModelPut(item.id))}
+                                    className="font-medium cursor-pointer text-cyan-500 hover:underline"
+                                >
+                                    Edit
+                                </p>} />
+
                             </tr>
                         )) :
                         <></>
