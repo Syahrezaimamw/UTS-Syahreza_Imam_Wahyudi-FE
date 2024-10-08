@@ -47,7 +47,7 @@ const Pengembalian = () => {
             
                   <span
                     href="#"
-                    className="font-medium text-gray-500 cursor-pointer hover:underline"
+                    className="font-medium cursor-pointer text-cyan-500 hover:underline"
                   >
                     <Link to={`/pengembalian/${item.id}`}>
                       View

@@ -135,8 +135,8 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
 
                                 {
                                     title.toLowerCase() == 'register' ?
-                                        <Link to='/' className="ml-1 font-semibold text-gray-900 hover:underline whitespace-nowrap"
-                                        >Login</Link> :  <Link to='/register' className="ml-1 font-semibold text-gray-900 hover:underline whitespace-nowrap"
+                                        <Link to='/' className="ml-1 font-semibold text-cyan-500 hover:underline whitespace-nowrap"
+                                        >Login</Link> :  <Link to='/register' className="ml-1 font-semibold text-cyan-500 hover:underline whitespace-nowrap"
                                         >Register</Link>
                                 }
 

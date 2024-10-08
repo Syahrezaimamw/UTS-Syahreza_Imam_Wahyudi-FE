@@ -86,7 +86,7 @@ const User = () => {
 
             putUser(dataUe, dataUe.id, (berhasil) => {
                 setTimeout(() => {
-                    window.location.href = '/projectPTS12/user/'
+                    window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/user/'
                 }, 1000)
                 console.log(berhasil)
 

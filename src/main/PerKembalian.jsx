@@ -64,7 +64,7 @@ const PerKembalian = () => {
                             <FaAngleLeft/>
                             </Link>
                             <div className="relative flex flex-col bg-white shadow-lg pointer-events-auto rounded-xl ">
-                                <div className="relative overflow-hidden text-center bg-gray-900 min-h-32 rounded-t-xl ">
+                                <div className="relative overflow-hidden text-center bg-cyan-800 min-h-32 rounded-t-xl ">
                                     {/* Close Button */}
                                     <div className="absolute top-2 end-2">
 

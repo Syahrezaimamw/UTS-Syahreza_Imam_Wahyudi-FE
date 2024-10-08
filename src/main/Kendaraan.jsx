@@ -52,7 +52,7 @@ const Kendaraan = () => {
       postKendaraan(dataK,(berhasil)=>{
         setMsg(berhasil)
         setTimeout(()=>{
-          window.location.href='/projectPTS12/kendaraan'
+          window.location.href='/UTS-Syahreza_Imam_Wahyudi-FE/kendaraan'
           setLoading(false)
         },2000)
         
@@ -69,7 +69,7 @@ const Kendaraan = () => {
       <div>
         <Alert alerts={alerts} err={err}></Alert>
         <div className='flex justify-end w-full pr-4 mb-8'>
-          <BtnK warna='bg-cyan-400' fs={handleClick}>
+          <BtnK warna='bg-cyan-500' fs={handleClick}>
             Add Kendaraan
           </BtnK>
 

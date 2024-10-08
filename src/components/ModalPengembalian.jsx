@@ -49,7 +49,7 @@ const ModalPengembalian = ({ title, modal, data, dataPeminjaman,handle,loading }
         </div>
       </div>
           <Input name='kondisi' value={data.dataPengembalian.kondisi} change={(e) => handleChange(e)} type={'text'} title={'Masukan Kondisi Kendaraan'}></Input>
-          <button className='w-full py-2 font-semibold text-white rounded rounded-lgmibold bg-cyan-400'
+          <button className='w-full py-2 font-semibold text-white rounded rounded-lgmibold bg-cyan-500'
         onClick={handle}>
           {
             loading?

@@ -12,7 +12,7 @@ import User from './main/User';
 import './App.css'
 const App = () => {
   return (
-    <BrowserRouter basename='/projectPTS12'>
+    <BrowserRouter basename='/UTS-Syahreza_Imam_Wahyudi-FE'>
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
             <Route path="/" element={<Login />} />

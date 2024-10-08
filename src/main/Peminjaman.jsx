@@ -64,7 +64,7 @@ const Peminjaman = () => {
                   onClick={(() => showModelPut(item.id))}
                   className="font-medium cursor-pointer text-cyan-400 hover:underline"
                 >
-                  Edit
+                  View
                 </p>} />
 
 

@@ -1,8 +1,4 @@
 import React from 'react'
-import InputKendaraan from './InputKendaraan';
-import Button from './Button';
-import { fixHandle } from '../service/fixHandle';
-import { postKendaraan } from '../service/kendaraan';
 import Loading from './Loading';
 import Modal from '../template/Modal';
 import Input from './Input';
@@ -64,7 +60,7 @@ const ModalKendaraan = ({ title, modal, dataK, handlePost, loading, teks }) => {
                 </div>
                 <Input name='gambar' value={dataK.dataK.gambar} change={(e) => handleChange(e)} type={'text'} title={'Masukan Link Gambar'}></Input>
 
-                <button className='w-full py-2 text-white rounded rounded-lgmibold bg-cyan-400'
+                <button className='w-full py-2 text-white rounded rounded-lgmibold bg-cyan-500'
                     onClick={handlePost}>
                     {
                         loading ?

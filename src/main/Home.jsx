@@ -3,69 +3,80 @@ import Dashboard from '../template/Dashboard'
 import { jwtDecode } from 'jwt-decode'
 import axios from 'axios'
 const Home = () => {
-  const [name,setName]=useState()
-  const [token,setToken]=useState()
+  const [name, setName] = useState()
+  const [token, setToken] = useState()
 
-  // useEffect(()=>{
-  //   refresToken()
-    
-  // },[])
-  // const refresToken=async()=>{
-  //   try{
-  //     const response = await axios.get('http://localhost:3100/admin/token')
-  //     // setToken(response.data.accesToken)
-  //     // const decode = jwtDecode(response.data.accesToken)
-  //     console.log(response)
-  //   }catch{
-      
-  //   }
-    
-  // }
-  
+  const [data, setData] = useState([
+    {
+      judul: 'Me-Menejemen Kendaraan',
+      page: 'Kendaraan',
+      teks: 'Admin rutin mengelola data kendaraan meliputi pengecekan dan pembaharuan data baru'
+    },
+   
+    {
+      judul: 'Kelola Data User',
+      page: 'User',
+      teks: 'Admin menambah data client pada table user untuk data yang belum terdaftar'
+    },
+    {
+      judul: 'Membuat Peminjaman',
+      page: 'Kendaraan',
+      teks: 'Admin mengelola seluruh peminjaman, melakukan penginputan data secara menyeluruh dan benar'
+    },
+    {
+      judul: 'Kelola dan Pantau Status Peminjaman',
+      page: 'Peminjaman',
+      teks: 'Admin melakukan pengecekan status Peminjaman pada table Peminjaman'
+    },
+    {
+      judul: 'Cek Pengembalian',
+      page: 'Admin melakukan pengecekan terhadap data Kendaraan yang dikembalikan',
+      teks: ''
+    },
+    {
+      judul: 'Melakukan Cetak',
+      page: 'Cetak',
+      teks: 'Admin mencetak rekap Peminjaman - Pengembalian dalam bentuk PDF'
+    },
+  ])
+
   return (
-    <Dashboard title={'Home'}>
-      <>
-        <div className="relative flex flex-col justify-center min-h-screen py-6 overflow-hidden bg-gray-50 sm:py-12">
-          <div className="relative px-6 pt-10 pb-8 overflow-hidden transition-all duration-300 bg-white shadow-xl cursor-pointer group ring-1 ring-gray-900/5 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-lg sm:px-10">
-            <span className="absolute top-10 z-0 h-20 w-20 rounded-full bg-sky-500 transition-all duration-300 group-hover:scale-[10]" />
-            <div className="relative z-10 max-w-md mx-auto">
-              <span className="grid w-20 h-20 transition-all duration-300 rounded-full place-items-center bg-sky-500 group-hover:bg-sky-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-10 h-10 text-white transition-all"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"
-                  />
-                </svg>
-              </span>
-              <div className="pt-5 space-y-6 text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-white/90">
-                <p>
-                  Perfect for learning how the framework works, prototyping a new
-                  idea, or creating a demo to share online.
-                </p>
-              </div>
-              <div className="pt-5 text-base font-semibold leading-7">
-                <p>
-                  <a
-                    href="#"
-                    className="transition-all duration-300 text-sky-500 group-hover:text-white"
+    <Dashboard title={'Pengenalan'}>
+      <div className='px-8 py-4'>
+        <ol className="relative border-gray-200 border-s dark:border-gray-700">
+          
+          {
+            data.map((item, i) => (
+
+              <li key={i} className="mb-10 ms-6">
+                <span className="absolute flex items-center justify-center w-6 h-6 rounded-full -start-3 ring-8 ring-cyan-700 bg-cyan-500">
+                  <svg
+                    className="w-2.5 h-2.5  text-blue-200"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
-                    Read the docs →
-                  </a>
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
+                </span>
+                <h3 className="mb-1 text-lg font-semibold text-gray-900">
+                  {item.judul}
+                </h3>
+                <time className="block mb-2 text-sm font-normal leading-none text-gray-400 ">
+                  {item.page}, Pinjemin
+                </time>
+                <p className="text-base font-normal text-gray-500 ">
+                 {item.teks}
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
+              </li>
+
+            ))
+          }
+        </ol>
+
         {/* https://play.tailwindcss.com/eCfibrSI2X */}
-      </>
+      </div>
 
     </Dashboard>
   )

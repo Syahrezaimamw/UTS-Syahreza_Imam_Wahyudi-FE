@@ -38,7 +38,7 @@ const ModalUser = ({ title, modal, dataU,loading,teks,handlePost }) => {
       </div>
         <Input name='alamat' value={dataU.dataU.alamat} change={(e) => handleChange(e)} type={'text'} title={'Masukan Alamat'}></Input>
         
-        <button className='w-full py-2 text-white rounded rounded-lgmibold bg-cyan-400'
+        <button className='w-full py-2 text-white rounded rounded-lgmibold bg-cyan-500'
                     onClick={handlePost}>
                     {
                         loading ?

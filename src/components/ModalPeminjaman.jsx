@@ -4,7 +4,7 @@ import Input from './Input'
 import moment from 'moment'
 import Select from 'react-select'
 import { convertToRp } from '../service/currency'
-import { getAllData } from '../service/get'
+import { getAllData, getAllDataById } from '../service/get'
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
 
@@ -80,9 +80,14 @@ const ModalPeminjaman = ({ title, modal, data, setTotal,handle,dataKendara,loadi
     }),
   };
 
-
+  const [idA, setIdAdmin] = useState(localStorage.IA ? localStorage.IA : 18)
+  const [admin, setAdminn] = useState()
+  useEffect(() => {
+      getAllDataById('http://localhost:3100/admin/find/' + idA).then((a, i) => setAdminn(a))
+  }, [])
 
   
+  console.log(admin)
 
 
 
@@ -94,7 +99,7 @@ const ModalPeminjaman = ({ title, modal, data, setTotal,handle,dataKendara,loadi
 
         </div>
         <div className='w-[48%]'>
-          <Input name='Admin' value={`Jidan`} change={(e) =>{}} type={'text'} title={'Admin'}></Input>
+          <Input name='Admin' value={admin?admin.nama:'??'} change={(e) =>{}} type={'text'} title={'Admin'}></Input>
         </div>
       </div>
       <div className='flex justify-between w-full'>
@@ -122,7 +127,7 @@ const ModalPeminjaman = ({ title, modal, data, setTotal,handle,dataKendara,loadi
           <Input name='total_harga' value={data ? convertToRp(jumlahTanggal() * dataKendara.harga) : ''} change={(e) => { }} type={'teks'} title={'Total Harga Sewa'}></Input>
         </div>
       </div>
-      <button className='w-full py-2 font-semibold text-white rounded rounded-lgmibold bg-cyan-400'
+      <button className='w-full py-2 font-semibold text-white rounded rounded-lgmibold bg-cyan-500'
         onClick={handle}>
              {
             loading?

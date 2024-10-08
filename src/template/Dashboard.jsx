@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FaRegFileAlt, FaRegFileArchive } from 'react-icons/fa';
 import { FaHouse, FaBars, FaRegCircleUser } from "react-icons/fa6";
 import { FaCar } from "react-icons/fa6";
-import img from '../image/logo.jpg'
+import img from '../image/logo.png'
 import { Link } from 'react-router-dom';
 import { getAllDataById } from '../service/get';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ const Dashboard = ({ children, title }) => {
 
     const data = [
         {
-            name: 'Home',
+            name: 'Pengenalan',
             ic: <FaHouse />,
             to: '/home'
         },
@@ -78,8 +78,8 @@ const Dashboard = ({ children, title }) => {
         <AdminContext.Provider value={admin}>
             <nav className="fixed top-0 z-50 w-full h-[69px] bg-white/[99] border-b border-gray-900 ">
                 <div className="h-full px-3 py-4 lg:px-5 lg:pl-3">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center justify-start rtl:justify-end">
+                    <div className="flex items-center justify-between ">
+                        <div className="flex items-center justify-start lg:ps-4 rtl:justify-end">
 
                             {/* humberger */}
                             <button
@@ -93,7 +93,7 @@ const Dashboard = ({ children, title }) => {
 
                             <img
                                 src={img}
-                                className="relative h-[40px] bg-red-900 me-3"
+                                className=" w-[25px] bg-red-900 me-3"
                             />
                             <span className="self-center text-xl font-bold text-gray-800 sm:text-2xl whitespace-nowrap">
                                 Pinjemin
@@ -184,7 +184,7 @@ const Dashboard = ({ children, title }) => {
                                 <li key={i} className='cursor-pointer'>
                                     <Link to={a.to}>
                                         <div className={`${a.name == title ? 'bg-white shadow-lg py-2.5 ' : ''}flex hover:shadow-lg hover:bg-white items-center gap-2 p-2 text-white rounded-lg  group`}>
-                                            <span className={`${a.name == title ? 'bg-cyan-400  group-hover:text-white' : 'bg-white '}flex items-center shadow-md justify-center p-3 transition group-hover:bg-cyan-400 group-hover:text-white duration-75 rounded-lg text-md  bg-cyan text-gray-400 `}><i className={`${a.name == title ? 'text-white  ' : 'text-gray-900 group-hover:text-white '}`}>{a.ic}</i></span>
+                                            <span className={`${a.name == title ? 'bg-cyan-500  group-hover:text-white' : 'bg-white '}flex items-center shadow-md justify-center p-3 transition group-hover:bg-cyan-500 group-hover:text-white duration-75 rounded-lg text-md  bg-cyan text-gray-400 `}><i className={`${a.name == title ? 'text-white  ' : 'text-gray-900 group-hover:text-white '}`}>{a.ic}</i></span>
                                             <span className={` ${a.name == title ? 'text-black' : 'text-gray-600 group-hover:text-black'} font-semibold  m7-3`}>{a.name}</span>
                                         </div>
                                     </Link>
@@ -195,8 +195,8 @@ const Dashboard = ({ children, title }) => {
 
 
                     </ul>
-                    <div className='px-4 py-4 text-white rounded-lg bg-gradient-to-l from-blue-400 to-cyan-300'>
-                        <p className='font-bold text-center '>{tanggal()}</p>
+                    <div className='px-4 py-4 text-white bg-white rounded-lg '>
+                        <p className='font-bold text-center text-cyan-500'>{tanggal()}</p>
                     </div>
                 </div>
             </aside>
