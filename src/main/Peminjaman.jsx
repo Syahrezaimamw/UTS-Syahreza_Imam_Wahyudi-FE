@@ -22,7 +22,6 @@ const Peminjaman = () => {
     { judul: "Admin" },
     { judul: "total" },
     { judul: "status" },
-    // { judul: "No_ktp" },
   ]
 
   const [showModal,setShowModal]=useState(false)
