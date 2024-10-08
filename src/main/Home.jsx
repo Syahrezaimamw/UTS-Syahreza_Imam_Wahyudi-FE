@@ -31,7 +31,7 @@ const Home = () => {
     {
       judul: 'Cek Pengembalian',
       page: 'Admin melakukan pengecekan terhadap data Kendaraan yang dikembalikan',
-      teks: ''
+      teks: 'Admin melakukan pengecekan dan melihat detail Pengembalian pada table Pengembalian'
     },
     {
       judul: 'Melakukan Cetak',
