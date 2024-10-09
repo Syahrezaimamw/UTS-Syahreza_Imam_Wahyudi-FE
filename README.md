@@ -1,7 +1,6 @@
-# RESTFULL API KELOLA PEMINJAMAN KENDARAAN
+# Website Admin KELOLA PEMINJAMAN KENDARAAN
 <br>
 
-## Berjalan di http://localhost:3100/
 
 ## Deskripsi Projek 
 
