@@ -1,7 +1,6 @@
 # WEBSITE ADMIN KELOLA PEMINJAMAN KENDARAAN
 <br>
 
-
 ## Deskripsi Projek 
 
 **Sistem Peminjaman Kendaraan** adalah sebuah Website responsif yang dirancang untuk memudahkan pengelolaan data Peminjaman Kendaraan yang dijalankan oleh Admin menggunakan React JS. Website ini memungkinkan Admin untuk memanage data peminjaman dengan lebih cepat dan efisian.
@@ -71,7 +70,8 @@
     <br>
     
 
-
+## Note
+Data user = Data Client
 
 <br>
 
