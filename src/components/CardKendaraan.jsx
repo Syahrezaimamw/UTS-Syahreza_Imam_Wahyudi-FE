@@ -6,7 +6,7 @@ const CardKendaraan = ({dt}) => {
   return (
     <div  className="w-[279px] overflow-hidden rounded-md shadow-md ">
     <div className="relative">
-      <div className=' h-[180px] overflow-hidden'>
+      <div className=' h-[180px] flex items-center justify-center overflow-hidden'>
 
         <img
           className="w-[85%]"

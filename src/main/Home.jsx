@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Dashboard from '../template/Dashboard'
-import { jwtDecode } from 'jwt-decode'
-import axios from 'axios'
+
 const Home = () => {
   const [name, setName] = useState()
-  const [token, setToken] = useState()
 
   const [data, setData] = useState([
     {
@@ -39,6 +37,9 @@ const Home = () => {
       teks: 'Admin mencetak rekap Peminjaman - Pengembalian dalam bentuk PDF'
     },
   ])
+
+  
+  
 
   return (
     <Dashboard title={'Pengenalan'}>

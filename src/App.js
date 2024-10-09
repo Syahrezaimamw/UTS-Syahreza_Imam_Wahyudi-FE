@@ -9,6 +9,7 @@ import PerKembalian from './main/PerKembalian';
 import Home from './main/Home';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import User from './main/User';
+import Error from './main/Error';
 import './App.css'
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
             <Route path="/kendaraan/:id" element={<PerKendaraan />} />
             <Route path="/pengembalian/" element={<Pengembalian/>} />
             <Route path="/pengembalian/:id" element={<PerKembalian />} />
-            <Route path="*" element={<h1>tidak ada Page</h1>} />
+            <Route path="*" element={<Error/>} />
           </Routes>
         </BrowserRouter>
   )

@@ -11,7 +11,6 @@ const ModalPengembalian = ({ title, modal, data, dataPeminjaman,handle,loading }
     data.setDataPengembalian({ ...newData,denda:parseInt(newData.denda) })
 
   }
-  console.log(data.dataPengembalian)
 
   return (
     <Modal title={title} modal={modal}>

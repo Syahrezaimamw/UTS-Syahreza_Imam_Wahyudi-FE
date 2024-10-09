@@ -8,10 +8,22 @@ import { Link } from 'react-router-dom';
 import { getAllDataById } from '../service/get';
 import { useNavigate } from 'react-router-dom';
 import { AdminContext } from '../contex/adminContex';
-
+import { jwtDecode } from 'jwt-decode'
 
 const Dashboard = ({ children, title }) => {
     const navigate = useNavigate();
+    const [dataAdmin,setDataAdmin] =useState()
+    useEffect(()=>{
+        const token = localStorage.getItem('token')
+      if(token === null){
+        navigate('/')
+      }else{
+        setDataAdmin( jwtDecode(token))
+    }
+    
+},[])
+
+    
     const [showProfile, setShowProfile] = useState(false)
     const [showSide, setShowSide] = useState(false)
 
@@ -23,13 +35,6 @@ const Dashboard = ({ children, title }) => {
 
     }
 
-
-
-    const [idAdmin, setIdAdmin] = useState(localStorage.IA ? localStorage.IA : 18)
-    const [admin, setAdmin] = useState()
-    useEffect(() => {
-        getAllDataById('http://localhost:3100/admin/find/' + idAdmin).then((a, i) => setAdmin(a))
-    }, [])
 
 
     const data = [
@@ -75,7 +80,7 @@ const Dashboard = ({ children, title }) => {
     // console.log(admin)
 
     return (
-        <AdminContext.Provider value={admin}>
+        <>
             <nav className="fixed top-0 z-50 w-full h-[69px] bg-white/[99] border-b border-gray-900 ">
                 <div className="h-full px-3 py-4 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between ">
@@ -126,13 +131,13 @@ const Dashboard = ({ children, title }) => {
                                             className="text-sm text-gray-900 "
                                             role="none"
                                         >
-                                            {admin ? admin.nama : '--'}
+                                            {dataAdmin ? dataAdmin.nama : '--'}
                                         </p>
                                         <p
                                             className="text-sm font-medium text-gray-900 truncate "
                                             role="none"
                                         >
-                                            {admin ? admin.email : '--'}
+                                            {dataAdmin ? dataAdmin.email : '--'}
 
                                         </p>
                                     </div>
@@ -152,7 +157,7 @@ const Dashboard = ({ children, title }) => {
                                             ))
                                         }
                                         <li className='cursor-pointer' onClick={(a, i) => {
-                                            localStorage.removeItem("IA");
+                                            localStorage.removeItem("token");
                                             navigate('/');
                                         }}>
                                             <a
@@ -212,7 +217,7 @@ const Dashboard = ({ children, title }) => {
 
                 </div>
             </div>
-        </AdminContext.Provider>
+        </>
 
     )
 }

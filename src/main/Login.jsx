@@ -23,13 +23,14 @@ const Login = () => {
                 }, 1000)
             } else {
 
-                axios.post('http://localhost:3100/admin/loginB', data, {
+                axios.post('http://localhost:3100/admin/login', data, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
                     .then((response) => {
-                        localStorage.setItem("IA", response.data.datas);
+                        // console.log(response)
+                        localStorage.setItem("token", response.data.accessToken);
                         navigate('/home')
                         setLoading(false)
                     })

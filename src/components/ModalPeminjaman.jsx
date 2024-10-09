@@ -8,7 +8,7 @@ import { getAllData, getAllDataById } from '../service/get'
 import { Link } from 'react-router-dom'
 import Loading from './Loading'
 
-const ModalPeminjaman = ({ title, modal, data, setTotal,handle,dataKendara,loading }) => {
+const ModalPeminjaman = ({ title, modal, data,dataAdmin, setTotal,handle,dataKendara,loading }) => {
 
   //? Data Peminjaman
   const [dataUser, setDataUser] = useState([])
@@ -80,14 +80,9 @@ const ModalPeminjaman = ({ title, modal, data, setTotal,handle,dataKendara,loadi
     }),
   };
 
-  const [idA, setIdAdmin] = useState(localStorage.IA ? localStorage.IA : 18)
-  const [admin, setAdminn] = useState()
-  useEffect(() => {
-      getAllDataById('http://localhost:3100/admin/find/' + idA).then((a, i) => setAdminn(a))
-  }, [])
+
 
   
-  console.log(admin)
 
 
 
@@ -99,7 +94,7 @@ const ModalPeminjaman = ({ title, modal, data, setTotal,handle,dataKendara,loadi
 
         </div>
         <div className='w-[48%]'>
-          <Input name='Admin' value={admin?admin.nama:'??'} change={(e) =>{}} type={'text'} title={'Admin'}></Input>
+          <Input name='Admin' value={dataAdmin?dataAdmin.nama:'??'} change={(e) =>{}} type={'text'} title={'Admin'}></Input>
         </div>
       </div>
       <div className='flex justify-between w-full'>

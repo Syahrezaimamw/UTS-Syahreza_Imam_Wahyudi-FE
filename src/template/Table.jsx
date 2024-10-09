@@ -31,10 +31,7 @@ const Table = ({ title, headers,children }) => {
                                 </th>
 
                             ))}
-                            <th scope="col" className="px-6 py-3">
-                                Option
-                                {/* <span className="sr-only" >Edit</span> */}
-                            </th>
+                       
                         </tr>
                     </thead>
                     <tbody>

@@ -107,6 +107,7 @@ const User = () => {
         { judul: "EMAIL" },
         { judul: "ALAMAT" },
         { judul: "No_ktp" },
+        { judul: "Option" },
     ]
 
     return (

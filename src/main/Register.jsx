@@ -40,7 +40,6 @@ const Register = () => {
         }, 500)
     }
 
-    console.log(data)
     return (
         <div className=''>
             <Acces title='Register' handle={handleRegister} loading={loading} err={err} data={{ data, setData }} description="Create your account to be able to access">

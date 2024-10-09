@@ -22,6 +22,7 @@ const Peminjaman = () => {
     { judul: "Admin" },
     { judul: "total" },
     { judul: "status" },
+
   ]
 
   const [showModal,setShowModal]=useState(false)
@@ -52,19 +53,13 @@ const Peminjaman = () => {
                 <Column value={
                   item.status ?
                     <span className='text-red-600' >
-                      Dalam Proses
+                     Proses
                     </span>
                     :
                     <span className='text-green-600'>
                       Selesai
                     </span>
                 } />
-                <Column value={<p
-                  onClick={(() => showModelPut(item.id))}
-                  className="font-medium cursor-pointer text-cyan-400 hover:underline"
-                >
-                  View
-                </p>} />
 
 
 

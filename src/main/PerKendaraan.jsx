@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Dashboard from '../template/Dashboard'
 import { Link } from 'react-router-dom';
 import { convertToRp } from '../service/currency';
@@ -11,13 +11,34 @@ import { deleteKendaraan, getAllDataKendaraanById, putKendaraan } from '../servi
 import BtnK from '../components/BtnK';
 import Alert from '../components/Alert';
 import { handleAlerts } from '../service/alert';
-import Loading from '../components/Loading';
 import ModalPeminjaman from '../components/ModalPeminjaman';
 import { postDataAllTable } from '../service/post';
 import ModalPengembalian from '../components/ModalPengembalian';
-import { AdminContext } from '../contex/adminContex';
+import { jwtDecode } from 'jwt-decode'
+
 import { getAllPeminjamanSekarang } from '../service/get';
 const PerKendaraan = () => {
+    const navigate = useNavigate()
+    const [dataAdmin, setDataAdmin] = useState()
+    const [idA, setIdA] = useState(1)
+    // console.log(dataAdmin)
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if (token === null) {
+            navigate('/')
+        } else {
+            setDataAdmin(jwtDecode(token))
+        }
+
+    }, [])
+    useEffect(() => {
+        if (dataAdmin) {
+
+            setIdA(dataAdmin.adminId)
+        }
+    }, [dataAdmin])
+
     const { id } = useParams()
 
 
@@ -100,14 +121,13 @@ const PerKendaraan = () => {
 
 
     //* PEMINJAMAN
-    const [idAdmin,setIdAdmin] =useState(localStorage.IA ? localStorage.IA : 18)
+
 
     const [dataPeminjaman, setDataPeminjaman] = useState({
         tanggal_peminjaman: '',
         tanggal_pengembalian: '',
         total_harga: 0,
         status: true,
-        AdminId: idAdmin,
         UserId: 0,
         KendaraanId: parseInt(id),
     })
@@ -122,7 +142,7 @@ const PerKendaraan = () => {
 
     function postDataPeminjaman() {
         setLoading(true)
-        const dataPost = { ...dataPeminjaman, total_harga: total }
+        const dataPost = { ...dataPeminjaman, total_harga: total,AdminId:idA }
         const url = 'http://localhost:3100/peminjaman/create'
         postDataAllTable(url, dataPost, (berhasil) => {
             setTimeout(() => {
@@ -172,7 +192,7 @@ const PerKendaraan = () => {
                 : <></>
 
             }
-            <ModalPeminjaman title={'Add Peminjaman'} dataKendara={data ? data : ''} loading={loading} setTotal={setTotal} harga_sewa={data ? data.harga : 0} modal={{ showModal: showModalPeminjaman, setShowModal: setShowModalPeminjaman }} data={{ dataPeminjaman, setDataPeminjaman }} handle={postDataPeminjaman}></ModalPeminjaman>
+            <ModalPeminjaman title={'Add Peminjaman'} dataKendara={data ? data : ''} loading={loading} setTotal={setTotal} harga_sewa={data ? data.harga : 0} modal={{ showModal: showModalPeminjaman, setShowModal: setShowModalPeminjaman }} dataAdmin={dataAdmin} data={{ dataPeminjaman, setDataPeminjaman }} handle={postDataPeminjaman}></ModalPeminjaman>
 
             <ModalPengembalian title={'Add Pengembalian'} data={{ dataPengembalian, setDataPengembalian }} dataPeminjaman={dataPmjnForPngmbln} modal={{ showModal: showModalPengembalian, setShowModal: setShowModalPengembalian }} loading={loading} handle={postDataPengembalian}></ModalPengembalian>
 

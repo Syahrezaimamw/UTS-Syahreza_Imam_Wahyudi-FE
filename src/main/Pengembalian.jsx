@@ -21,6 +21,8 @@ const Pengembalian = () => {
     { judul: "nama_peminjam" },
     { judul: "Admin" },
     { judul: "total" },
+    { judul: "Option" },
+
   ]
   return (
     <Dashboard title='Pengembalian'>
