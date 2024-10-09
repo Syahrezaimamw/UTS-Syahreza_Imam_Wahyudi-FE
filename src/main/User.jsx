@@ -124,7 +124,7 @@ const User = () => {
             <ModalUser teks='Add Data Users' title='Add Data User ' loading={loading} handlePost={postData} dataU={{ dataU, setDataU }} modal={{ showModal, setShowModal }}></ModalUser>
             <ModalUser teks='Update Data Users' title='Update Data User ' loading={loading} handlePost={handlePut} dataU={{ dataU: dataUe, setDataU: setDataUe }} modal={{ showModal: showModalUpdate, setShowModal: setShowModalUpdate }}></ModalUser>
 
-            <Table title={'User'} headers={headTable} >
+            <Table title={'User / Client'} headers={headTable} >
                 {
                     data ?
                         data.map((item, i) => (

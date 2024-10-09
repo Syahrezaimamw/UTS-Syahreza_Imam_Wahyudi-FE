@@ -113,7 +113,7 @@ const ModalPeminjaman = ({ title, modal, data,dataAdmin, setTotal,handle,dataKen
             htmlFor={'UserId'}
             className="block mb-2 text-sm font-medium text-gray-900 "
           >
-            Pilih Custemer / <Link to='/user/' className='underline'>Tambah</Link>
+            Pilih Customer / <Link to='/user/' className='underline'>Tambah</Link>
           </label>
           <Select className='css-4ljt47-MenuList ' onChange={(e) => data.setDataPeminjaman({ ...data.dataPeminjaman, UserId: e.value })} options={dataUser} styles={customStyles} ></Select>
 
