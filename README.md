@@ -1,6 +1,8 @@
 # RESTFULL API KELOLA PEMINJAMAN KENDARAAN
 <br>
 
+## Berjalan di http://localhost:3100/
+
 ## Deskripsi Projek 
 
 **Sistem Peminjaman Kendaraan** adalah sebuah Website responsif yang dirancang untuk memudahkan pengelolaan data Peminjaman Kendaraan yang dijalankan oleh Admin menggunakan React JS. Website ini memungkinkan Admin untuk memanage data peminjaman dengan lebih cepat dan efisian.
