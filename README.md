@@ -1,5 +1,6 @@
-# RESTFULL API KELOLA PEMINJAMAN KENDARAAN
+# WEBSITE ADMIN KELOLA PEMINJAMAN KENDARAAN
 <br>
+
 
 ## Deskripsi Projek 
 
@@ -109,10 +110,10 @@
 - **Modal Update Kendaraan**
 <img src="./src/image/modalupdatekendara.png" />
 
-- **Modal Buat Peminjaman**
+- **Modal Add Peminjaman**
 <img src="./src/image/modalpinjamkendara.png" />
 
-- **Modal Buat Pengembalian**
+- **Modal Add Pengembalian**
 <img src="./src/image/modalKembaliKendaraan.png" />
 
 - **Table User**
