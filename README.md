@@ -134,6 +134,9 @@
 - **Invoice**
 <img src="./src/image/invoice.png" />
 
+- **Page 404**
+<img src="./src/image/err.png" />
+
 
 
 <br>
