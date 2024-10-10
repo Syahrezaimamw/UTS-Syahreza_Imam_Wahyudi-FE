@@ -1,7 +1,7 @@
 # WEBSITE ADMIN KELOLA PEMINJAMAN KENDARAAN
 <br>
 
-##Link BE Terakhir fi update malam
+## Link BE Terakhir di update rabu malam
 
 ## Deskripsi Projek 
 
