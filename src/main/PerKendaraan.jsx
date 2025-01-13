@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Dashboard from '../template/Dashboard'
 import { Link } from 'react-router-dom';
@@ -7,58 +7,59 @@ import { FaAngleRight } from "react-icons/fa6";
 import { FaTrash } from "react-icons/fa6";
 import ModalKendaraan from '../components/ModalKendaraan';
 import { FaPen } from "react-icons/fa6";
-import { deleteKendaraan, getAllDataKendaraanById, putKendaraan } from '../service/kendaraan'
 import BtnK from '../components/BtnK';
 import Alert from '../components/Alert';
 import { handleAlerts } from '../service/alert';
 import ModalPeminjaman from '../components/ModalPeminjaman';
 import { postDataAllTable } from '../service/post';
 import ModalPengembalian from '../components/ModalPengembalian';
-import { jwtDecode } from 'jwt-decode'
+import { getAllDataById, getAllPeminjamanSekarang } from '../service/get';
+import { updateAllData } from '../service/put';
+import { deleteData } from '../service/delete';
+import { refreshToken } from '../service/refreshToken';
 
-import { getAllPeminjamanSekarang } from '../service/get';
 const PerKendaraan = () => {
+
     const navigate = useNavigate()
+    const { id } = useParams()
+
+    //? ADMIN
     const [dataAdmin, setDataAdmin] = useState()
-    const [idA, setIdA] = useState(1)
-    // console.log(dataAdmin)
+    const [token, setToken] = useState()
+    
 
     useEffect(() => {
-        const token = localStorage.getItem('token')
-        if (token === null) {
+        refreshToken(setDataAdmin, setToken, () => {
             navigate('/')
-        } else {
-            setDataAdmin(jwtDecode(token))
-        }
-
+        })
     }, [])
+    
+
+    const [idA, setIdA] = useState(1)
     useEffect(() => {
         if (dataAdmin) {
-
             setIdA(dataAdmin.adminId)
         }
     }, [dataAdmin])
 
-    const { id } = useParams()
 
-
-    //! message
+    //* message
     const [alerts, setAlerts] = useState([])
     const [err, setErr] = useState(false)
 
-    //? loading
+    //* loading
     const [loading, setLoading] = useState(false)
     const [loadDel, setLoadDel] = useState(false)
 
-    //? Modal
+    //* Modal
     const [showModal, setShowModal] = useState(false)
     const [showModalPeminjaman, setShowModalPeminjaman] = useState(false)
     const [showModalPengembalian, setShowModalPengembalian] = useState(false)
 
-    //? data kendaraan
+    //* data kendaraan
     const [data, setData] = useState()
 
-    //? data Pengembalian
+    //* data Pengembalian
     const [dataPmjnForPngmbln, setDataPmjnForPngmbln] = useState()
     const [dataPengembalian, setDataPengembalian] = useState({
         tanggal_dikembalikan: '',
@@ -66,51 +67,41 @@ const PerKendaraan = () => {
         kondisi: '',
     })
 
-
+    //* First Get Data
     useEffect(() => {
-        getAllDataKendaraanById(id).then((result) => {
+        getAllDataById('http://localhost:3100/kendaraan/find/' + id).then((result) => {
             setData(result)
         })
         getAllPeminjamanSekarang(id).then((result) => setDataPmjnForPngmbln(result))
     }, [])
 
+    const url = 'http://localhost:3100/kendaraan'
+
+    //* update kendaraan
     function handlePut() {
         setLoading(true)
-        if (data.nama === '' || data.merk === '' || data.harga == 0 || data.nomer_plat === '' || data.gambar == '' || data.kategori == '' || data.tipe == '' || data.warna == '') {
-            setErr('pastikan semua input terisi')
-
-            handleAlerts(alerts, setAlerts)
+        updateAllData(url + `/update/${id}`, data, (berhasil) => {
+            setLoading(true)
             setTimeout(() => {
+                window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/kendaraan/' + id
                 setLoading(false)
-            }, 1000)
-        } else {
-            putKendaraan(data, id, (berhasil) => {
-                setLoading(true)
-                setTimeout(() => {
-                    window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/kendaraan/' + id
-                    setLoading(false)
-                    // setShowModal(false)
-                }, 2000)
+            }, 2000)
 
-            }, (gagal) => {
-                handleAlerts(alert, setAlerts)
-                setErr('data harus diisi')
-            })
-
-
-        }
-
-
-
+        }, (gagal) => {
+            handleAlerts(alert, setAlerts)
+            setErr(gagal)
+            setLoading(false)
+        })
     }
 
-    function ShowModelK() {
-        setShowModal(true)
-    }
-
+    //* delete kendaraan
     function delKendaraan() {
         setLoadDel(true)
-        deleteKendaraan(id, () => {
+        deleteData(url + `/delete/${id}`, () => {
+            setTimeout(() => {
+                window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/kendaraan'
+                setLoadDel(false)
+            }, 2000)
         }, () => {
             setTimeout(() => {
                 window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/kendaraan'
@@ -120,9 +111,7 @@ const PerKendaraan = () => {
     }
 
 
-    //* PEMINJAMAN
-
-
+    //? PEMINJAMAN
     const [dataPeminjaman, setDataPeminjaman] = useState({
         tanggal_peminjaman: '',
         tanggal_pengembalian: '',
@@ -131,57 +120,46 @@ const PerKendaraan = () => {
         UserId: 0,
         KendaraanId: parseInt(id),
     })
-
-
-    function handleModalPeminjman() {
-        setShowModalPeminjaman(true)
-
-    }
-
     const [total, setTotal] = useState(0)
 
+    //* add data Peminjaman
     function postDataPeminjaman() {
         setLoading(true)
-        const dataPost = { ...dataPeminjaman, total_harga: total,AdminId:idA }
+        const dataPost = { ...dataPeminjaman, total_harga: total, AdminId: idA }
         const url = 'http://localhost:3100/peminjaman/create'
         postDataAllTable(url, dataPost, (berhasil) => {
             setTimeout(() => {
-
                 window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/kendaraan/' + id
             }, 1000)
         }, (gagal) => {
             setTimeout(() => {
-
                 setLoading(false)
-            }, 1000)
-            console.log(gagal)
+                setErr(gagal)
+                handleAlerts(alerts, setAlerts)
+            }, 100)
         }
         )
-
-        console.log(dataPost)
-
     }
+
+    //* add data Pengembalian
     function postDataPengembalian() {
         setLoading(true)
         const dataPost = { ...dataPengembalian, PeminjamanId: dataPmjnForPngmbln.id }
         const url = 'http://localhost:3100/pengembalian/create'
         postDataAllTable(url, dataPost, (berhasil) => {
             setTimeout(() => {
-
                 window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/kendaraan/' + id
             }, 1000)
         }, (gagal) => {
             setTimeout(() => {
                 setLoading(false)
-
-            }, 1000)
-            console.log(gagal)
+                setErr(gagal)
+                handleAlerts(alerts, setAlerts)
+            }, 100)
         }
         )
-
-        console.log(dataPost)
-
     }
+
     return (
         <Dashboard title={'Kendaraan'}>
             <Alert alerts={alerts} err={err}></Alert>
@@ -236,12 +214,12 @@ const PerKendaraan = () => {
                                             <></>
                                         : <></>
                                 }
-                                <BtnK fs={() => ShowModelK()} warna='bg-gray-500'><FaPen /></BtnK>
+                                <BtnK fs={() => setShowModal(true)} warna='bg-gray-500'><FaPen /></BtnK>
                             </div>
                             {
                                 data ?
                                     data.status ?
-                                        <BtnK fs={handleModalPeminjman} warna='bg-cyan-400'>
+                                        <BtnK fs={() => setShowModalPeminjaman(true)} warna='bg-cyan-400'>
                                             Pinjam
                                         </BtnK> :
                                         <BtnK fs={() => setShowModalPengembalian(true)} warna='bg-gray-600 hover:bg-red-500'>

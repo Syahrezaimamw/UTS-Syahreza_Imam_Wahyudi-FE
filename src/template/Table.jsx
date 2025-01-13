@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 
-const Table = ({ title, headers,children }) => {
+
+const Table = ({ title, headers,  children }) => {
+
     return (
         <div>
             <div className='flex justify-end w-full'>
@@ -19,8 +22,9 @@ const Table = ({ title, headers,children }) => {
 
                         </div>
                         <p className="mt-1 text-sm font-normal text-gray-800 ">
-                            Tabel berisi data {title} harap melakukan cek dan   
+                            Tabel berisi data {title} harap melakukan cek dan
                         </p>
+
                     </caption>
                     <thead className="text-xs text-white uppercase bg-cyan-500">
                         <tr>
@@ -31,7 +35,7 @@ const Table = ({ title, headers,children }) => {
                                 </th>
 
                             ))}
-                       
+
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +44,7 @@ const Table = ({ title, headers,children }) => {
                     </tbody>
                 </table>
             </div>
-
+          
         </div>
     )
 }

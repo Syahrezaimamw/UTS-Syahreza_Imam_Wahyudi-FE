@@ -6,10 +6,9 @@ import { FaEnvelope } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
-import {img} from '../image/logofe.png'
 import { Link } from 'react-router-dom'
 import Loading from '../components/Loading';
-const Acces = ({ title, description, err,data,handle,loading, children }) => {
+const Acces = ({ title, description, err,data,handle,loading }) => {
     const pwref = useRef(null)
     const conpwref = useRef(null)
 
@@ -22,6 +21,7 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
     data.setData(newData)
 
    }
+   
     return (
         <div className="font-[sans-serif]">
             <div className="flex items-center justify-center min-h-screen px-4 py-6 fle-col">
@@ -35,7 +35,6 @@ const Acces = ({ title, description, err,data,handle,loading, children }) => {
                                 </p>
                             </div>
 
-                            {/* // sss */}
 
                             {
                                 title=='Register'?

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Login from './main/Login';
 import Register from './main/Register';
 import Kendaraan from './main/Kendaraan';
@@ -11,12 +11,14 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import User from './main/User';
 import Error from './main/Error';
 import './App.css'
+import LandingPage from './main/LandingPage';
 const App = () => {
+  // dotenv.config ()
   return (
     <BrowserRouter basename='/UTS-Syahreza_Imam_Wahyudi-FE'>
           <Routes>
-            {/* <Route path="/" element={<Home />} /> */}
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<Home />} />
             <Route path="/user" element={<User />} />

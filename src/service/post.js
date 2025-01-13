@@ -12,9 +12,8 @@ export const postDataAllTable=async(url,data,berhasil,gagal)=>{
       })
           .then((response) => {
             berhasil(response.data.message)
-            // setLoading(false)
           })
           .catch((error) => {
-            gagal(error)
+            gagal(error.response.data.message)
           });
       }

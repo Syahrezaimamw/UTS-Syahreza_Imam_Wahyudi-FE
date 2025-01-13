@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Dashboard from '../template/Dashboard'
 
 const Home = () => {
-  const [name, setName] = useState()
-
   const [data, setData] = useState([
     {
       judul: 'Me-Menejemen Kendaraan',
@@ -75,8 +73,6 @@ const Home = () => {
             ))
           }
         </ol>
-
-        {/* https://play.tailwindcss.com/eCfibrSI2X */}
       </div>
 
     </Dashboard>

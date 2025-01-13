@@ -1,29 +1,74 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import { FaRegFileAlt, FaRegFileArchive } from 'react-icons/fa';
-import { FaHouse, FaBars, FaRegCircleUser } from "react-icons/fa6";
-import { FaCar } from "react-icons/fa6";
-import img from '../image/logo.png'
-import { Link } from 'react-router-dom';
-import { getAllDataById } from '../service/get';
 import { useNavigate } from 'react-router-dom';
-import { AdminContext } from '../contex/adminContex';
-import { jwtDecode } from 'jwt-decode'
+import { FaRegFileAlt, FaRegFileArchive } from 'react-icons/fa';
+import { FaHouse, FaBars, FaRegCircleUser, FaCar, FaRepeat } from "react-icons/fa6";
+import img from '../image/logo.png'
+
+import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { refreshToken } from '../service/refreshToken';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+import Modal from './Modal';
+
 
 const Dashboard = ({ children, title }) => {
     const navigate = useNavigate();
-    const [dataAdmin,setDataAdmin] =useState()
-    useEffect(()=>{
-        const token = localStorage.getItem('token')
-      if(token === null){
-        navigate('/')
-      }else{
-        setDataAdmin( jwtDecode(token))
-    }
-    
-},[])
 
-    
+    //?TOken
+    const [dataAdmin, setDataAdmin] = useState()
+    const [token, setToken] = useState()
+
+    useEffect(() => {
+        refreshToken(setDataAdmin, setToken, () => {
+            navigate('/login')
+        })
+    }, [])
+
+
+    const axiosJWT = axios.create()
+
+    axiosJWT.interceptors.request.use(async (config) => {
+        const currentDate = new Date()
+        if (dataAdmin.exp * 1000 < currentDate.getTime()) {
+            const response = await axios.post('http://localhost:3100/admin/token', {
+                refreshToken: Cookies.get('refreshToken')
+            });
+            config.headers.Authorization = `Bearer ${response.data.accesTokenBaru}`;
+            setDataAdmin(jwtDecode(response.data.accesTokenBaru))
+            setToken(response.data.accesTokenBaru)
+        }
+        return config
+    }, (err) => {
+        return Promise.reject(err)
+    })
+
+
+
+    //?
+    const [dataAllAdmin, setDataAllAdmin] = useState([])
+    const getAdmin = async () => {
+        const response = await axiosJWT.get('http://localhost:3100/admin/', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        setDataAllAdmin(response.data.datas)
+        console.log(response.data.datas)
+    }
+
+    // useEffect(() => {
+    //     const token = localStorage.getItem('token')
+    //     if (token === null) {
+    //         navigate('/')
+    //     } else {
+    //         setDataAdmin(jwtDecode(token))
+    //     }
+
+    // }, [])
+
+
     const [showProfile, setShowProfile] = useState(false)
     const [showSide, setShowSide] = useState(false)
 
@@ -77,16 +122,49 @@ const Dashboard = ({ children, title }) => {
         return currentDate
 
     }
-    // console.log(admin)
+
+    const [showModal, setShowModal] = useState(false)
+    function handleShowAllAdmin() {
+        getAdmin()
+        setShowModal(true)
+    }
 
     return (
         <>
+            <Modal title={'Data Admin'} modal={{ showModal, setShowModal }}>
+                <table className='relative w-full text-sm text-left text-gray-500 rtl:text-right '>
+                    <thead className='text-xs text-gray-700 uppercase'>
+                        <tr>
+
+                        <th className="pb-3 pe-6">Status</th>
+                        <th className="pb-3 pe-6"> Nama </th>
+                        <th className="pb-3 pe-6">Email</th>
+                        <th className="pb-3 pe-6">Terkahir Login</th>
+                        </tr>
+                    </thead>
+                    <tbody className='text-gray-700'>
+                        
+                {dataAllAdmin.map((result, i) => (
+                    <tr key={i}>
+                        <td className='relative py-2 '>
+                            <span className={`size-[11px]  rounded-full ${result.id == dataAdmin.adminId ? 'bg-green-500':'bg-gray-500'} absolute left-0 top-[12px]`}></span>
+                            <p className='ps-4'>{result.id === dataAdmin.adminId?'Online':'Offline'}</p>
+                        </td>
+                        <td>{result.nama}</td>
+                        <td>{result.email}</td>
+                        <td>Hari Ini : ( 09.00 )</td>
+                    </tr>
+                
+                ))}
+                                    </tbody>
+                </table>
+
+            </Modal>
             <nav className="fixed top-0 z-50 w-full h-[69px] bg-white/[99] border-b border-gray-900 ">
                 <div className="h-full px-3 py-4 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between ">
                         <div className="flex items-center justify-start lg:ps-4 rtl:justify-end">
 
-                            {/* humberger */}
                             <button
                                 onClick={handleShowSide}
                                 type="button"
@@ -156,8 +234,20 @@ const Dashboard = ({ children, title }) => {
                                                 </li>
                                             ))
                                         }
+                                        <li
+                                            className='cursor-pointer' onClick={handleShowAllAdmin} >
+                                            <span
+
+                                                className="block px-4 py-2 text-sm text-gray-700 hover:text-gray-300 hover:bg-gray-600 "
+
+                                            >
+                                                Lihat Admin
+                                            </span>
+
+                                        </li>
+
                                         <li className='cursor-pointer' onClick={(a, i) => {
-                                            localStorage.removeItem("token");
+                                            Cookies.remove('refreshToken')
                                             navigate('/');
                                         }}>
                                             <a
@@ -167,7 +257,9 @@ const Dashboard = ({ children, title }) => {
                                             >
                                                 Logout
                                             </a>
+
                                         </li>
+                                       
 
                                     </ul>
                                 </div>

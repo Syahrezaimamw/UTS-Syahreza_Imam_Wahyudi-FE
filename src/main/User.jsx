@@ -1,16 +1,18 @@
 import React from 'react'
 import Dashboard from '../template/Dashboard'
 import { useState, useEffect } from 'react'
-import BtnK from '../components/BtnK'
 import ModalUser from '../components/ModalUser'
 import Alert from '../components/Alert'
-import { getAllDataUser, getAllDataUserById, postDataUser, putUser } from '../service/user'
 import { handleAlerts } from '../service/alert'
 import Table from '../template/Table'
 import Column from '../components/Column'
+import { getAllData, getAllDataById } from '../service/get'
+import { postDataAllTable } from '../service/post'
+import { updateAllData } from '../service/put'
 const User = () => {
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
     const [alerts, setAlerts] = useState([])
+
     const [dataU, setDataU] = useState({
         nama: '',
         telephone: '',
@@ -33,70 +35,54 @@ const User = () => {
     const [showModal, setShowModal] = useState()
     const [showModalUpdate, setShowModalUpdate] = useState()
     const [loading, setLoading] = useState()
+    const urlUser = 'http://localhost:3100/user/'
+
 
     useEffect(() => {
-        getAllDataUser().then((res) => setData(res))
+        getAllData(urlUser).then((res) => setData(res))
     }, [])
 
-    function handleShowModal() {
-        setShowModal(true)
-    }
-
+    //* Add User
     function postData() {
         setLoading(true)
-        if (dataU.nama == '' || dataU.telephone == '' || dataU.email == '' || dataU.alamat === '' || dataU.no_ktp === 0 || dataU.no_ktp === '') {
-            setErr('pastikan data terisi')
-            handleAlerts(alerts, setAlerts)
-            setLoading(false)
-        } else {
-
-            postDataUser(dataU, (berhasil) => {
-                setTimeout(() => {
-                    setLoading(false)
-                    window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/user'
-                }, 500)
-                console.log(berhasil)
-            }, (gagal) => {
-                setTimeout(() => {
-
-                    setLoading(false)
-                    setErr('gagal menambah data')
-                    handleAlerts(alerts, setAlerts)
-                }, 500)
-                console.log(gagal)
-            })
-        }
-    }
-
-    function showModelPut(id) {
-        setShowModalUpdate(true)
-        getAllDataUserById(id).then((data) => setDataUe(data))
-    }
-    function handlePut() {
-
-        setLoading(true)
-        if (dataUe.nama == '' || dataUe.telephone == '' || dataUe.email == '' || dataUe.alamat === '' || dataUe.no_ktp === 0 || dataUe.no_ktp === '') {
-
-            handleAlerts(alert, setAlerts)
-            setErr('data harus diisi')
+        const url = 'http://localhost:3100/user/create'
+        postDataAllTable(url, dataU, (berhasil) => {
             setTimeout(() => {
                 setLoading(false)
-            }, 200)
-        } else {
+                window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/user'
+            }, 500)
+        }, (gagal) => {
+            setTimeout(() => {
 
-            putUser(dataUe, dataUe.id, (berhasil) => {
+                setLoading(false)
+                setErr(gagal)
+                handleAlerts(alerts, setAlerts)
+            }, 500)
+        })
+    }
+
+    //* Update User
+    function showModelPut(id) {
+        setShowModalUpdate(true)
+        const url = 'http://localhost:3100/user/find/'+id
+        getAllDataById(url).then((data) => setDataUe(data))
+    }
+    
+    function handlePut() {
+        const url = 'http://localhost:3100/user/update/'+dataUe.id
+        setLoading(true)
+            updateAllData(url,dataUe, (berhasil) => {
                 setTimeout(() => {
                     window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/user/'
                 }, 1000)
-                console.log(berhasil)
-
             }, (gagal) => {
-                console.log(gagal)
-                handleAlerts(alert, setAlerts)
-                setErr(gagal)
-                setLoading(false)
+                setTimeout(() => {
+                    setLoading(false)
+                    setErr(gagal)
+                    handleAlerts(alerts, setAlerts)
+                }, 500)
             })
-        }
+    
 
     }
 
@@ -109,22 +95,23 @@ const User = () => {
         { judul: "No_ktp" },
         { judul: "Option" },
     ]
+    
 
     return (
         <Dashboard title="User">
             <Alert err={err} alerts={alerts} ></Alert>
             <div className='flex justify-end w-full'>
-                
-            <button onClick={handleShowModal} className='px-3 py-1 text-white rounded-md bg-cyan-500 active:scale-95'>
+
+                <button onClick={() => setShowModal(true)} className='px-3 py-1 text-white rounded-md bg-cyan-500 active:scale-95'>
 
 
-                Add
-            </button>
+                    Add
+                </button>
             </div>
             <ModalUser teks='Add Data Users' title='Add Data User ' loading={loading} handlePost={postData} dataU={{ dataU, setDataU }} modal={{ showModal, setShowModal }}></ModalUser>
-            <ModalUser teks='Update Data Users' title='Update Data User ' loading={loading} handlePost={handlePut} dataU={{ dataU: dataUe, setDataU: setDataUe }} modal={{ showModal: showModalUpdate, setShowModal: setShowModalUpdate }}></ModalUser>
+            <ModalUser teks='Update Data Users' title='Update Data User ' loading={loading} handlePost={handlePut} dataU={{ dataU : dataUe, setDataU:setDataUe }} modal={{ showModal: showModalUpdate, setShowModal: setShowModalUpdate }}></ModalUser>
 
-            <Table title={'User / Client'} headers={headTable} >
+            <Table title={'User / Client'}  headers={headTable} >
                 {
                     data ?
                         data.map((item, i) => (
@@ -152,6 +139,7 @@ const User = () => {
                         <></>
                 }
             </Table>
+          
 
         </Dashboard>
     )

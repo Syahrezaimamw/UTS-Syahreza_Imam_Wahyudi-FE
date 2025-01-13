@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Acces from '../template/Acces'
 import axios from 'axios'
+import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false)
@@ -11,26 +13,24 @@ const Login = () => {
         email: '',
         password: '',
     })
+    useEffect(()=>{
+        // Cookies.remove('accessToken');
+        // Cookies.remove('refreshToken');
+    },[])
+
 
     const Auth = async (e) => {
         setLoading(true)
         try {
-            if (data.email === '' || data.password === '') {
-                setTimeout(() => {
-                    setErr('Pastikan Mengisi Semua Data')
-                    setLoading(false)
-
-                }, 1000)
-            } else {
-
-                axios.post('http://localhost:3100/admin/login', data, {
+               await axios.post('http://localhost:3100/admin/login', data, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
                     .then((response) => {
-                        // console.log(response)
                         localStorage.setItem("token", response.data.accessToken);
+                        Cookies.set('refreshToken', response.data.refreshToken, {
+                             expires: 1 });
                         navigate('/home')
                         setLoading(false)
                     })
@@ -39,17 +39,15 @@ const Login = () => {
                             setLoading(false)
                             setErr(error.response.data.message)
 
-                        }, 1500)
+                        }, 1000)
                     });
-            }
         } catch (err) {
             setTimeout(() => {
                 setLoading(false)
 
-            }, 1500)
-            console.log(err)
-
+            }, 1000)
         }
+
     }
 
 

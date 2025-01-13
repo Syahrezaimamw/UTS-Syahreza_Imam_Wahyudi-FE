@@ -7,14 +7,15 @@ import Column from '../components/Column'
 import { convertToRp } from '../service/currency'
 import ModalPeminjaman from '../components/ModalPeminjaman'
 const Peminjaman = () => {
-  const [data, setData] = useState()
+  
+  const [data, setData] = useState([])
+  
   useEffect(() => {
     const url = 'http://localhost:3100/peminjaman/'
     getAllData(url).then((data, i) => setData(data))
   }, [])
 
   const headTable = [
-    // { judul: "Kendaraan" },
     { judul: "kendaraan" },
     { judul: "tGL_peminjaman" },
     { judul: "tgl_pengembalian" },
@@ -30,9 +31,12 @@ const Peminjaman = () => {
   function showModelPut(id){
     setShowModal(true)
   }
+
+
+  
   return (
     <Dashboard title='Peminjaman'>
-      <Table title='Peminjaman' headers={headTable} >
+      <Table title='Peminjaman'  headers={headTable} >
         {
           data ?
             data.map((item, i) => (
@@ -41,6 +45,7 @@ const Peminjaman = () => {
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
                 >
+                  
                   <Link className='hover:underline' to={`/kendaraan/${item.Kendaraan.id}`}>
                   {item.Kendaraan.nama}
                 </Link>
@@ -70,6 +75,7 @@ const Peminjaman = () => {
         }
         {/* <ModalPeminjaman title={'Add Peminjaman'} modal={{ showModal, setShowModal }}></ModalPeminjaman> */}
       </Table>
+     
     </Dashboard>
   )
 }

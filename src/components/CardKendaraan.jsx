@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const CardKendaraan = ({dt}) => {
   return (
-    <div  className="w-[279px] overflow-hidden rounded-md shadow-md ">
+    <div  className="w-full md:w-[260px] lg:w-[279px] overflow-hidden rounded-md shadow-md ">
     <div className="relative">
       <div className=' h-[180px] flex items-center justify-center overflow-hidden'>
 

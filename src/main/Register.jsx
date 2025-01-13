@@ -16,28 +16,22 @@ const Register = () => {
 
     function handleRegister() {
         setLoading(true)
-
         setTimeout(() => {
-
-
                 axios.post('http://localhost:3100/admin/register', data, {
                     headers: {
                         'Content-Type': 'application/json'
                     }
                 })
                     .then((response) => {
-                       navigate('/')
+                       navigate('/login')
                         setLoading(false)
                     })
                     .catch((error) => {
                             setErr(error.response.data.message)
                         setLoading(false)
                     });
-            
-
-
             setLoading(false)
-        }, 500)
+        }, 1000)
     }
 
     return (

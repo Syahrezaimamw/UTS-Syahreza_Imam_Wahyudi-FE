@@ -43,7 +43,8 @@ const ModalPengembalian = ({ title, modal, data, dataPeminjaman,handle,loading }
 
         </div>
         <div className='w-[48%]'>
-          <Input name='denda' value={data.dataPengembalian.denda} change={(e) => handleChange(e)} type={'number'} title={'Masukan Type'}></Input>
+          
+          <Input name='denda' value={data.dataPengembalian.denda} change={(e) => handleChange(e)} type={'number'} title={'Masukan Denda'}></Input>
 
         </div>
       </div>

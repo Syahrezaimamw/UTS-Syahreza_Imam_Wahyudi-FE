@@ -8,7 +8,7 @@ const Modal = ({modal,title,children}) => {
     id="authentication-modal"
     tabIndex={-1}
     aria-hidden="true"
-    className={`${modal.showModal ? 'flex' : 'hidden'} bg-black/50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center  items-center w-full md:inset-0 h-[calc(100%-1rem)] min-h-screen  `}
+    className={`${modal.showModal ? 'flex' : 'hidden'} bg-black/50 overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center  items-center w-full md:inset-0 h-[calc(100%-1rem)] min-h-screen  `}
 >
     <div className="relative w-full max-w-[750px] max-h-full p-4">
         {/* Modal content */}

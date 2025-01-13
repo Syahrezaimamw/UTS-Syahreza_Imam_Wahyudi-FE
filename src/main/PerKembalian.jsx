@@ -65,7 +65,6 @@ const PerKembalian = () => {
                             </Link>
                             <div className="relative flex flex-col bg-white shadow-lg pointer-events-auto rounded-xl ">
                                 <div className="relative overflow-hidden text-center bg-cyan-800 min-h-32 rounded-t-xl ">
-                                    {/* Close Button */}
                                     <div className="absolute top-2 end-2">
 
                                     </div>
@@ -84,10 +83,8 @@ const PerKembalian = () => {
                                             />
                                         </svg>
                                     </figure>
-                                    {/* End SVG Background Element */}
                                 </div>
                                 <div className="relative z-10 -mt-12">
-                                    {/* Icon */}
                                     <span className="mx-auto flex justify-center items-center size-[62px] rounded-full border border-gray-200 bg-white text-gray-700 shadow-sm ">
                                         <svg
                                             className="shrink-0 size-6"
@@ -101,9 +98,7 @@ const PerKembalian = () => {
                                             <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
                                         </svg>
                                     </span>
-                                    {/* End Icon */}
                                 </div>
-                                {/* Body */}
                                 <div className="p-4 overflow-y-auto sm:p-7">
                                     <div className="text-center">
                                         <h3
@@ -116,7 +111,6 @@ const PerKembalian = () => {
                                             {data.Peminjaman.User.nama} ( {data.Peminjaman.User.no_ktp} )
                                         </p>
                                     </div>
-                                    {/* Grid */}
                                     <div className="flex justify-between gap-5 mt-5 sm:mt-10 sm:grid-cols-3">
 
                                         <div>
@@ -135,7 +129,6 @@ const PerKembalian = () => {
                                                 {data ? data.Peminjaman.tanggal_peminjaman.substring(0, 10) : ''}
                                             </span>
                                         </div>
-                                        {/* End Col */}
                                         <div>
                                             <span className="block text-xs text-gray-500 uppercase ">
                                                 Batas Waktu
@@ -201,7 +194,6 @@ const PerKembalian = () => {
                                         </div>
 
                                     </div>
-                                    {/* End Grid */}
                                     <div className="mt-5 sm:mt-10">
                                         <h4 className="text-xs font-semibold text-gray-800 uppercase ">
                                             Summary
@@ -228,7 +220,6 @@ const PerKembalian = () => {
                                         </ul>
                                     </div>
 
-                                    {/* End Buttons */}
                                     <div className="mt-5 sm:mt-10">
                                         <p className="text-sm text-gray-500 dark:text-neutral-500">
                                             If you have any questions, please contact us at{" "}
@@ -241,14 +232,11 @@ const PerKembalian = () => {
 
                                         </p>
                                     </div>
-                                    {/* <p className='text-sm text-end'>By : {data.Peminjaman.Admin.nama}</p> */}
                                 </div>
-                                {/* End Body */}
                             </div>
                         </div>
                     </div> : <></>
             }
-            {/* End Modal */}
         </div>
 
     )

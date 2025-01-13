@@ -24,6 +24,7 @@ const Pengembalian = () => {
     { judul: "Option" },
 
   ]
+  console.log(data)
   return (
     <Dashboard title='Pengembalian'>
       <Table title={'Pengembalian'} headers={headTable}>
