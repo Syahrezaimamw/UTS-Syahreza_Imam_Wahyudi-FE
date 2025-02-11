@@ -29,7 +29,7 @@ const Footer = () => {
             <div className="max-w-screen-xl mx-auto ">
                 <div className="grid grid-cols-2 gap-3 py-10 sm:grid-cols-4 lg:grid-cols-6 md:gap-8 max-sm:max-w-sm max-sm:mx-auto gap-y-8">
                     <div className="mb-10 col-span-full lg:col-span-2 lg:mb-0">
-                        <div className='flex items-center'>
+                        <div className='flex items-center justify-center md:justify-start'>
                             <img src={img} alt="" className='w-[30px]' />
                             <p className='text-2xl font-medium ms-2'>Pinjemin</p>
                         </div>
@@ -38,13 +38,13 @@ const Footer = () => {
                             query ?
                         </p>
                         <a
-                            href="javascript:;"
+                        
                             className="py-2.5 px-5 h-9 block w-fit bg-cyan-600 rounded-full shadow-sm text-xs text-white mx-auto transition-all  duration-500 hover:bg-cyan-700 lg:mx-0"
                         >
                             Contact us
                         </a>
                     </div>
-                    {/*End Col*/}
+               
                     {
                         Data.map((e, i) => (
                             <div className="text-left lg:mx-auto " key={i}>
@@ -53,7 +53,7 @@ const Footer = () => {
                                     {e.isi.map((en, ind) => (
                                         <li className="mb-6" key={ind}>
                                             <a
-                                                href="javascript:;"
+                                            
                                                 className="text-gray-600 hover:text-gray-900"
                                             >
                                                 {en}
@@ -81,7 +81,6 @@ const Footer = () => {
                                     
                             <a
                             key={i}
-                                href="javascript:;"
                                 className="flex items-center justify-center text-white bg-gray-600 rounded-full w-9 h-9 hover:bg-cyan-600"
                             >
                               {e}

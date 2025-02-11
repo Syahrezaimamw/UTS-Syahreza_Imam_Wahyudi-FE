@@ -20,6 +20,23 @@ export const getAllDataByStatus = async (value) => {
   }
 }
 
+export const searchKendaraan = async(nama,status,callback,error)=>{
+  console.log(status)
+  try {
+    const response=await axios.get(`http://localhost:3100/kendaraan/search?nama=${nama}&status=${status}`)
+    console.log(response.data.datas)
+    callback(response.data.datas)
+    return response.data.datas
+    
+  } catch (err){
+    console.log(err.message)
+    error([])
+    return err
+
+  }
+
+}
+
 export const getAllDataById = async (url) => {
 
   return await axios.get(url)

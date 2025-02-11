@@ -17,6 +17,7 @@ import { getAllDataById, getAllPeminjamanSekarang } from '../service/get';
 import { updateAllData } from '../service/put';
 import { deleteData } from '../service/delete';
 import { refreshToken } from '../service/refreshToken';
+import Popup from '../components/Popup';
 
 const PerKendaraan = () => {
 
@@ -77,10 +78,12 @@ const PerKendaraan = () => {
 
     const url = 'http://localhost:3100/kendaraan'
 
+    const [dataGambar,setDataGambar]=useState('')
+    
     //* update kendaraan
     function handlePut() {
         setLoading(true)
-        updateAllData(url + `/update/${id}`, data, (berhasil) => {
+        updateAllData(url + `/update/${id}`, {...data,gambar:dataGambar}, (berhasil) => {
             setLoading(true)
             setTimeout(() => {
                 window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/kendaraan/' + id
@@ -140,7 +143,6 @@ const PerKendaraan = () => {
         }
         )
     }
-
     //* add data Pengembalian
     function postDataPengembalian() {
         setLoading(true)
@@ -160,14 +162,18 @@ const PerKendaraan = () => {
         )
     }
 
+
+    //!
+    const[popup,setPopup]=useState(false)
     return (
         <Dashboard title={'Kendaraan'}>
             <Alert alerts={alerts} err={err}></Alert>
 
             {data
                 ?
-                <ModalKendaraan teks='Update Data Kendaraan' title='update data' loading={loading} handlePost={handlePut} dataK={{ dataK: data, setDataK: setData }} modal={{ showModal, setShowModal }}></ModalKendaraan>
+                <ModalKendaraan teks='Update Data Kendaraan' title='update data' loading={loading} setDataGambar={setDataGambar} handlePost={handlePut} dataK={{ dataK: data, setDataK: setData }} modal={{ showModal, setShowModal }}></ModalKendaraan>
                 : <></>
+
 
             }
             <ModalPeminjaman title={'Add Peminjaman'} dataKendara={data ? data : ''} loading={loading} setTotal={setTotal} harga_sewa={data ? data.harga : 0} modal={{ showModal: showModalPeminjaman, setShowModal: setShowModalPeminjaman }} dataAdmin={dataAdmin} data={{ dataPeminjaman, setDataPeminjaman }} handle={postDataPeminjaman}></ModalPeminjaman>
@@ -180,7 +186,7 @@ const PerKendaraan = () => {
             </div>
             <div className='flex mt-9 justify-between items-center  flex-col lg:flex-row  w-full lg:min-h-[480px] '>
                 <div className='w-full  lg:w-[40%]  flex items-center justify-center overflow-hidden'>
-                    <img src={data ? data.gambar : ''} className='w-[75%]' alt="" />
+                    <img src={data ? data.url : ''} className='w-[75%]' alt="" />
                 </div>
                 <div className='w-full  lg:w-[55%] justify-end flex items-center'>
 
@@ -203,13 +209,14 @@ const PerKendaraan = () => {
                         <div className='flex items-center pb-3 mt-3 border-b-2 '><h1 className='text-2xl font-semibold '>Harga : </h1>  <span className='font-medium  text-[20px] ms-2 mt-1'>{convertToRp(data ? data.harga : '')} <span className='font-normal'>/ hari</span></span></div>
                         <div className='flex justify-between mt-4'>
                             <div className='flex items-center gap-2'>
+                                {popup?
+                               <Popup modal={{popup,setPopup}} loadDel={loadDel} Title="Delete Data Kendaraan" sub={delKendaraan}> </Popup>
+                            :<></>}
                                 {
                                     data ?
-                                        data.status ? <BtnK fs={() => delKendaraan()} warna='bg-red-500'>
-                                            {loadDel ?
-
-                                                'Tunggu...' : <FaTrash />
-                                            }
+                                        data.status ? <BtnK fs={() => setPopup(true)} warna='bg-red-500'>
+                                          <FaTrash />
+                                            
                                         </BtnK> :
                                             <></>
                                         : <></>
@@ -231,6 +238,7 @@ const PerKendaraan = () => {
                     </div>
                 </div>
             </div>
+             {/* <Popup></Popup> */}
         </Dashboard>
     )
 }

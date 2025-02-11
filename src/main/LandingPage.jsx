@@ -9,14 +9,11 @@ import img from '../image/logo.png'
 import Article from '../landingPageComp/Article'
 import AboutCont from '../landingPageComp/AboutCont'
 import ShowUnit from '../landingPageComp/ShowUnit'
-
+import Map from '../landingPageComp/Map'
 
 const LandingPage = () => {
-  const [showList,setShowList]=useState(false)
-  const ref= useRef(null)
-  const handleScroll=()=>{
-    // ref.current?.scrollIntoView({behavior:'smooth'})
-  }
+
+
   const MenuNav = [
     {
       nama: 'Home',
@@ -36,7 +33,7 @@ const LandingPage = () => {
     },
   ]
   return (
-    <div className='w-full '>
+    <div className='w-full'>
       
     {/* <nav className="fixed top-0 z-20 w-full bg-white border-b border-gray-200 shadow-md">
       <div className="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
@@ -114,7 +111,7 @@ const LandingPage = () => {
       </div>
     </nav> */}
 
-      <div className=''>
+      <div >
         <Navbar></Navbar>
         <Containt1></Containt1>
         <AboutCont></AboutCont>
@@ -122,6 +119,7 @@ const LandingPage = () => {
         {/* <Containt2></Containt2> */}
         <Corousell ></Corousell>
         <Article/>
+        <Map/>
         <Footer/>
       </div>
     </div>

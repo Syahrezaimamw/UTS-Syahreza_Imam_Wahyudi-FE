@@ -17,7 +17,7 @@ const ModalUser = ({ title, modal, dataU,loading,teks,handlePost }) => {
       <div className='flex justify-between w-full'>
 
         <div className='w-[48%]'>
-        <Input name='nama' value={dataU?dataU.dataU.nama:''} change={(e) => handleChange(e)} type={'text'} title={'Masukan Nomer Nama'}></Input>
+        <Input name='nama' value={dataU?dataU.dataU.nama:''} change={(e) => handleChange(e)} type={'text'} title={'Masukan Nama Client'}></Input>
 
         </div>
         <div className='w-[48%]'>
@@ -32,7 +32,7 @@ const ModalUser = ({ title, modal, dataU,loading,teks,handlePost }) => {
 
         </div>
         <div className='w-[48%]'>
-          <Input name='no_ktp' value={dataU.dataU.no_ktp} change={(e) => handleChange(e)} type={'number'} title={'Masukan no KTP'}></Input>
+          <Input name='no_ktp' value={dataU.dataU.no_ktp} change={(e) => handleChange(e)} type={'number'} title={'Masukan Nomer KTP'}></Input>
 
         </div>
       </div>

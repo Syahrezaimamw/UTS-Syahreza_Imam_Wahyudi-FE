@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { FaRegFileAlt, FaRegFileArchive } from 'react-icons/fa';
 import { FaHouse, FaBars, FaRegCircleUser, FaCar, FaRepeat } from "react-icons/fa6";
 import img from '../image/logo.png'
-
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { refreshToken } from '../service/refreshToken';
@@ -176,9 +175,9 @@ const Dashboard = ({ children, title }) => {
 
                             <img
                                 src={img}
-                                className=" w-[25px] bg-red-900 me-3"
+                                className="hidden sm:block w-[25px] bg-red-900 me-3"
                             />
-                            <span className="self-center text-xl font-bold text-gray-800 sm:text-2xl whitespace-nowrap">
+                            <span className="self-center hidden text-xl font-bold text-gray-800 sm:block sm:text-2xl whitespace-nowrap">
                                 Pinjemin
                             </span>
                         </div>

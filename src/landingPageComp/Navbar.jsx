@@ -47,7 +47,10 @@ const Navbar = () => {
           </span>
         </a>
         <div className="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
+          <div className='hidden md:block'>
+
         <Buttons/>
+          </div>
           <button
             onClick={() => setShowList(showList ? false : true)}
             type="button"
@@ -88,21 +91,19 @@ const Navbar = () => {
                     offset={-100}
                     duration={500}
                     onSetActive={closeMenu}
-                    className="block px-3 py-2 text-gray-900 rounded cursor-pointer hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+                    className="block px-3 py-2 text-gray-900 rounded cursor-pointer hover:bg-gray-100 md:hover:bg-transparent md:hover:text-cyan-700 md:p-0"
                   >
                       {e.nama}
                   </Link>
 
-                  {/* <a
-                    href={e.target}
-                    className="block px-3 py-2 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
-                  >
-                  
-                  </a> */}
+              
                 </li>
               ))
             }
+<div className='flex justify-center w-full mt-2 md:hidden'>
 
+<Buttons/>
+  </div>
 
           </ul>
         </div>

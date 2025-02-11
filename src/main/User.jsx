@@ -95,26 +95,29 @@ const User = () => {
         { judul: "No_ktp" },
         { judul: "Option" },
     ]
+      const [currentData, setCurrentData] = useState([])
+    
     
 
     return (
         <Dashboard title="User">
             <Alert err={err} alerts={alerts} ></Alert>
-            <div className='flex justify-end w-full'>
+            {/*  */}
+            <ModalUser teks='Add Data Users' title='Add Data User ' loading={loading} handlePost={postData} dataU={{ dataU, setDataU }} modal={{ showModal, setShowModal }}></ModalUser>
+            <ModalUser teks='Update Data Users' title='Update Data User ' loading={loading} handlePost={handlePut} dataU={{ dataU : dataUe, setDataU:setDataUe }} modal={{ showModal: showModalUpdate, setShowModal: setShowModalUpdate }}></ModalUser>
+            {data.length !== 0 ?
+            <Table title={'User / Client'}  headers={headTable} data={data} setCurrentData={setCurrentData}
+            tambahData={
 
-                <button onClick={() => setShowModal(true)} className='px-3 py-1 text-white rounded-md bg-cyan-500 active:scale-95'>
+                <button onClick={() => setShowModal(true)} className='px-3 py-0 text-white rounded-sm text-md bg-cyan-500 active:scale-95'>
 
 
                     Add
-                </button>
-            </div>
-            <ModalUser teks='Add Data Users' title='Add Data User ' loading={loading} handlePost={postData} dataU={{ dataU, setDataU }} modal={{ showModal, setShowModal }}></ModalUser>
-            <ModalUser teks='Update Data Users' title='Update Data User ' loading={loading} handlePost={handlePut} dataU={{ dataU : dataUe, setDataU:setDataUe }} modal={{ showModal: showModalUpdate, setShowModal: setShowModalUpdate }}></ModalUser>
-
-            <Table title={'User / Client'}  headers={headTable} >
+                </button>}
+            >
                 {
-                    data ?
-                        data.map((item, i) => (
+                    currentData.length > 0 ?
+                        currentData.map((item, i) => (
                             <tr key={i} className="bg-white border-b ">
                                 <th
                                     scope="row"
@@ -139,6 +142,7 @@ const User = () => {
                         <></>
                 }
             </Table>
+            :<></>}
           
 
         </Dashboard>

@@ -8,6 +8,7 @@ import { FaEyeSlash } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import { Link } from 'react-router-dom'
 import Loading from '../components/Loading';
+import rentalbg from '../image/rental-mobil-.jpeg'
 const Acces = ({ title, description, err,data,handle,loading }) => {
     const pwref = useRef(null)
     const conpwref = useRef(null)
@@ -135,7 +136,7 @@ const Acces = ({ title, description, err,data,handle,loading }) => {
 
                                 {
                                     title.toLowerCase() == 'register' ?
-                                        <Link to='/' className="ml-1 font-semibold text-cyan-500 hover:underline whitespace-nowrap"
+                                        <Link to='/login' className="ml-1 font-semibold text-cyan-500 hover:underline whitespace-nowrap"
                                         >Login</Link> :  <Link to='/register' className="ml-1 font-semibold text-cyan-500 hover:underline whitespace-nowrap"
                                         >Register</Link>
                                 }
@@ -144,10 +145,9 @@ const Acces = ({ title, description, err,data,handle,loading }) => {
                             </p>
                         </div>
                     </div>
-                    <div className="lg:h-[400px] md:h-[300px] max-md:mt-8">
+                    <div className="lg:h-[400px] md:h-[300px] max-md:mt-8 flex justify-center items-center">
                         <img
-                            src="https://readymadeui.com/login-image.webp"
-                            className="block object-cover w-full h-full mx-auto max-md:w-4/5"
+                            src={rentalbg}
                             alt="Dining Experience"
                         />
                     </div>

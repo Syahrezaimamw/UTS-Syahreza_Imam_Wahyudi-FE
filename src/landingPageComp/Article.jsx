@@ -21,7 +21,7 @@ const Article = () => {
         }
     ]
   return (
-    <div className='max-w-screen-xl mx-auto text-gray-900 mb-[110px]' id='article'>
+    <div className='max-w-screen-xl mx-auto  text-gray-900 mb-[110px]' id='article'>
         <div className='flex flex-col items-center'>
 
         <h1 className='mb-4 text-3xl font-semibold'>Check out our latest article</h1>
@@ -29,10 +29,10 @@ const Article = () => {
 
         </div>
 
-        <div className='flex flex-wrap justify-between mt-24'>
+        <div className='flex flex-wrap justify-between mx-5 mt-24 lg:gap-0 gap-14 xl:mx-0 '>
             { data.map((e,i)=>(
                 
-                <div key={i} className="max-w-sm overflow-hidden rounded shadow-md">
+                <div key={i} className="overflow-hidden rounded shadow-md w-full md:w-[46%] lg:w-[32%] xl:w-[410px]">
                 <img
                   className="w-full min-h-[255px]"
                   src={e.img}
@@ -46,14 +46,14 @@ const Article = () => {
                     nihil.
                   </p>
                 </div>
-                <div className="px-6 pt-4 pb-2">
-                  <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-full">
+                <div className="px-6 pt-4 pb-2 [&>span]:inline-block [&>span]:px-3 text-gray-700 [&>span]:py-1 [&>span]:mb-2 [&>span]:mr-2 [&>span]:text-sm [&>span]:font-semibold [&>span]:rounded-full [&>span]:bg-gray-100 ">
+                  <span >
                     #Vehicle
                   </span>
-                  <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-full">
+                  <span >
                     #Otomotif
                   </span>
-                  <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-100 rounded-full">
+                  <span >
                     #Pinjemin
                   </span>
                 </div>
