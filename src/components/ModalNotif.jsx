@@ -41,7 +41,7 @@ const ModalNotif = ({ title, modal, data, hargaKendara, setTotal, sub }) => {
                 </div>
             </div>
             <div className='flex justify-between w-full'>
-                <div className='w-[48%]'>
+                <div className='w-full'>
                     <Input name='total_harga' value={data ? convertToRp(jumlahTanggal() * hargaKendara) : ''} change={(e) => { }} type={'teks'} title={'Total Harga Sewa'}></Input>
                 </div>
             </div>

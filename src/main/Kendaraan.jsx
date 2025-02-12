@@ -44,6 +44,7 @@ const Kendaraan = () => {
 
   function handlePost() {
     setLoading(true)
+    console.log(dataK)
     const url = 'http://localhost:3100/kendaraan/create'
     postDataAllKendaraan(url, dataK, (berhasil) => {
       setMsg(berhasil)

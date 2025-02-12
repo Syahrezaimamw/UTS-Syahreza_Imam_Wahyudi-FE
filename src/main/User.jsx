@@ -106,13 +106,13 @@ const User = () => {
             <ModalUser teks='Update Data Users' title='Update Data User ' loading={loading} handlePost={handlePut} dataU={{ dataU : dataUe, setDataU:setDataUe }} modal={{ showModal: showModalUpdate, setShowModal: setShowModalUpdate }}></ModalUser>
             {data.length !== 0 ?
             <Table title={'User / Client'}  headers={headTable} data={data} setCurrentData={setCurrentData}
-            tambahData={
+            // tambahData={
 
-                <button onClick={() => setShowModal(true)} className='px-3 py-0 text-white rounded-sm text-md bg-cyan-500 active:scale-95'>
+            //     <button onClick={() => setShowModal(true)} className='px-3 py-0 text-white rounded-sm text-md bg-cyan-500 active:scale-95'>
 
 
-                    Add
-                </button>}
+            //         Add
+            //     </button>}
             >
                 {
                     currentData.length > 0 ?

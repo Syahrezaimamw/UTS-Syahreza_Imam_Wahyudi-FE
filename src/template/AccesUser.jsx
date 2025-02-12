@@ -14,13 +14,7 @@ const AccesUser = ({ page, data, err, sub }) => {
     <div className="bg-gray-50 font-[sans-serif]">
       <div className="flex flex-col items-center justify-center min-h-screen px-4 py-6">
         <div className="w-full max-w-md">
-          <a href="javascript:void(0)">
-            <img
-              src="https://readymadeui.com/readymadeui.svg"
-              alt="logo"
-              className="block w-40 mx-auto mb-8"
-            />
-          </a>
+         
           <div className="p-8 bg-white shadow rounded-2xl">
             <h2 className="text-2xl font-bold text-center text-gray-800">
               {
@@ -91,7 +85,7 @@ const AccesUser = ({ page, data, err, sub }) => {
           </div>
             {
                 page === 'loginUser' ?
-                 <Link to='/login' className='flex items-center justify-center w-full gap-2 mt-3 text-sm font-semibold text-center text-cyan-600'>Login Sebagau Admin <FaArrowRight/></Link> :
+                 <Link to='/login' className='flex items-center justify-center w-full gap-2 mt-3 text-sm font-semibold text-center text-cyan-600'>Login Sebagai Admin <FaArrowRight/></Link> :
                   ''
               }
         </div>

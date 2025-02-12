@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react'
-import { FaRegFileAlt, FaRegFileArchive } from 'react-icons/fa';
-import { FaBars, FaCar,  FaRegCircleUser, FaRegRectangleList } from 'react-icons/fa6';
+import React, { useEffect, useState } from 'react'
+import { FaRegFileAlt, FaRegFileArchive, FaRegUser } from 'react-icons/fa';
+import { FaBars, FaCar,  FaRegRectangleList, FaX } from 'react-icons/fa6';
 import { Link, useNavigate } from 'react-router-dom';
 import img from '../image/logo.png'
 
 const DashUser = ({children,showSide,showProfile,title}) => {
+    const dataku=JSON.parse(localStorage.getItem('dataUser'))
     const data = [
            
             {
@@ -38,9 +39,36 @@ const DashUser = ({children,showSide,showProfile,title}) => {
             }else{
             }
         },[])
+        const[modal,setModal]=useState(false)
     return (
         <>
             <nav className="fixed top-0 z-50 w-full h-[69px] bg-white/[99] border-b border-gray-900 ">
+            {modal?
+            <div className='absolute px-4 py-3 bg-white border-2 rounded-lg shadow-xl top-20 right-4'>
+              <div className='flex justify-end w-full'>
+
+                <FaX onClick={()=>setModal(false)} className='text-sm cursor-pointer hover:text-red-900 text-end'/>
+              </div>
+                <div className='flex gap-2'>
+                    <h1 className='font-semibold'>Username : </h1>
+                    <h1> {" "+dataku.nama}</h1>
+                </div>
+                <div className='flex gap-2 mt-1'>
+                    <h1 className='font-semibold'>Email : </h1>
+                    <h1> {" "+dataku.email}</h1>
+                </div>
+                <div className='flex gap-2 mt-1'>
+                    <h1 className='font-semibold'>Not KTP : </h1>
+                    <h1> {" "+dataku.no_ktp}</h1>
+                </div>
+                <div className='flex justify-end w-full mt-2 font-semibold text-red-600 cursor-pointer hover:underline'>
+                    <p className='text-sm' onClick={()=>{
+                        localStorage.removeItem('dataUser')
+                        window.location.href='/UTS-Syahreza_Imam_Wahyudi-FE'
+                    }}>Log Out</p>
+                </div>
+            </div>
+        :<></>}
                 <div className="h-full px-3 py-4 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between ">
                         <div className="flex items-center justify-start lg:ps-4 rtl:justify-end">
@@ -68,16 +96,15 @@ const DashUser = ({children,showSide,showProfile,title}) => {
                             <div className="flex items-center ms-3">
                                 <div>
                                     <button
+                                    onClick={()=>setModal(true)}
                                         type="button"
-                                        className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                        className="flex text-sm rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                                         // onClick={() => handleshowProfile()}
                                     >
-                                        <span className="sr-only">Open user menu</span>
-                                        <img
-                                            className="w-8 h-8 rounded-full"
-                                            // src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                            alt="user photo"
-                                        />
+                                        <div>
+
+                                        <FaRegUser className='w-10' />
+                                        </div>
                                     </button>
                                 </div>
                                 <div

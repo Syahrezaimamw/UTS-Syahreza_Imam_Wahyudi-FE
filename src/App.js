@@ -20,6 +20,7 @@ import UserSewa from './user/UserSewa';
 import History from './user/History';
 import PeminjamanUser from './user/PeminjamanUser';
 import PengembalianUser from './user/PengembalianUser';
+import NotifikasiA from './main/NotifikasiA';
 const App = () => {
   // dotenv.config ()
   return (
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/kendaraan/:id" element={<PerKendaraan />} />
             <Route path="/pengembalian/" element={<Pengembalian/>} />
             <Route path="/pengembalian/:id" element={<PerKembalian />} />
+            <Route path="/notifikasi" element={<NotifikasiA />} />
 
             //?
             <Route path="/dashUser" element={<UserSewa />} />

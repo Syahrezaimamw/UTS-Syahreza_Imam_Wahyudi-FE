@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaRegFileAlt, FaRegFileArchive } from 'react-icons/fa';
+import { FaRegFileAlt, FaRegFileArchive, FaRegListAlt } from 'react-icons/fa';
 import { FaHouse, FaBars, FaRegCircleUser, FaCar, FaGear } from "react-icons/fa6";
 import img from '../image/logo.png'
 import { Link } from 'react-router-dom';
@@ -99,6 +99,11 @@ const Dashboard = ({ children, title }) => {
             name: 'Pengembalian',
             ic: <FaRegFileAlt />,
             to: '/pengembalian'
+        },
+        {
+            name: 'Notifikasi',
+            ic: <FaRegListAlt />,
+            to: '/notifikasi'
         },
 
     ]

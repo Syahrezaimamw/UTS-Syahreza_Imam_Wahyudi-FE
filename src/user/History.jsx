@@ -13,7 +13,7 @@ const History = () => {
 
         try {
 
-            const Data = await axios.get('http://localhost:3100/notif/findUser/6')
+            const Data = await axios.get('http://localhost:3100/notif/findUser/'+dataUser.id)
             const fetchedData = Data.data.datas;
 
             const proses = fetchedData.filter(item => item.status === "Diminta");
@@ -31,12 +31,11 @@ const History = () => {
     useEffect(() => {
         getData()
     }, [])
-    console.log(dataProses)
     return (
         <DashUser title='History Request'>
             <div className='w-full '>
                 <div className='w-full min-h-44'>
-                    <h1 className='w-full text-xl font-semibold border-b-2 border-cyan-400 text-cyan-600'>Memproses Peminjaman</h1>
+                    <h1 className='w-full text-2xl font-semibold border-b-2 border-cyan-400 text-cyan-600'>Memproses Peminjaman</h1>
                     <div className='flex flex-wrap w-full gap-5 mt-4'>
 
                         {dataProses.map((e, i) => (
@@ -46,20 +45,20 @@ const History = () => {
                     </div>
                 </div>
                 <div className='w-full mt-8 min-h-44'>
-                    <h1 className='w-full text-xl font-semibold border-b-2 border-cyan-400 text-cyan-600'>Berhasil Melakukan Peminjaman</h1>
+                    <h1 className='w-full text-2xl font-semibold border-b-2 border-cyan-400 text-cyan-600'>Berhasil Melakukan Peminjaman</h1>
                     <div className='flex flex-wrap w-full gap-5 mt-4'>
 
                         {dataBerhasil.map((e, i) => (
-                            <div>ddd</div>
+                           <CardHistory key={i} e={e}></CardHistory>
                         ))}
                     </div>
                 </div>
                 <div className='w-full mt-8 min-h-44'>
-                    <h1 className='w-full text-xl font-semibold border-b-2 border-cyan-400 text-cyan-600'>Gagal Melakukan Peminjaman</h1>
+                    <h1 className='w-full text-2xl font-semibold border-b-2 border-cyan-400 text-cyan-600'>Gagal Melakukan Peminjaman</h1>
                     <div className='flex flex-wrap w-full gap-5 mt-4'>
 
                         {dataGagal.map((e, i) => (
-                            <div>ddd</div>
+                          <CardHistory key={i} e={e}></CardHistory>
                         ))}
                     </div>
                 </div>

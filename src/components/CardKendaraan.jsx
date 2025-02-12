@@ -44,7 +44,9 @@ const CardKendaraan = ({ title, dt, sub }) => {
         <div className="flex flex-col justify-between">
           <span className="mb-2 font-bold text-md">{convertToRp(dt.harga)} <span className='text-sm font-medium'>/ Hari</span></span>
           {title === 'user' ?
-            <button onClick={() => sub(dt)} className={` ${dt.status ? "bg-gradient-to-l from-blue-400 to-cyan-300" : "bg-gray-500"} flex justify-center px-2 py-1 font-bold text-white transition-all duration-75 rounded  hover:scale-105 hover:shadow-md`}>Request Pinjam</button> :
+          dt.status=== false?            <button className={`bg-gray-600 flex justify-center px-2 py-1 font-bold text-white transition-all duration-75 rounded  hover:scale-105 hover:shadow-md`}>Request Pinjam</button> 
+          :
+            <button onClick={() => sub(dt)} className={`bg-gradient-to-l from-blue-400 to-cyan-300 flex justify-center px-2 py-1 font-bold text-white transition-all duration-75 rounded  hover:scale-105 hover:shadow-md`}>Request Pinjam</button> :
 
             dt.status ?
               <Link to={`/kendaraan/${dt.id}`} className={`flex justify-center px-2 py-1 font-bold text-white transition-all duration-75 rounded bg-gradient-to-l from-blue-400 to-cyan-300 hover:scale-105 hover:shadow-md`}>
