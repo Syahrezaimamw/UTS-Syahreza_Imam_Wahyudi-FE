@@ -36,7 +36,17 @@ const ModalUser = ({ title, modal, dataU,loading,teks,handlePost }) => {
 
         </div>
       </div>
+      <div className='flex justify-between w-full'>
+
+        <div className='w-[48%]'>
         <Input name='alamat' value={dataU.dataU.alamat} change={(e) => handleChange(e)} type={'text'} title={'Masukan Alamat'}></Input>
+
+        </div>
+        <div className='w-[48%]'>
+
+        {/* <Input name='password' value={dataU.dataU.password} change={(e) => handleChange(e)} type={'text'} title={'Masukan Password'}></Input> */}
+        </div>
+      </div>
         
         <button className='w-full py-2 text-white rounded rounded-lgmibold bg-cyan-500'
                     onClick={handlePost}>

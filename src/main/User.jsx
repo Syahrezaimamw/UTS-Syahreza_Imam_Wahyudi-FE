@@ -102,7 +102,6 @@ const User = () => {
     return (
         <Dashboard title="User">
             <Alert err={err} alerts={alerts} ></Alert>
-            {/*  */}
             <ModalUser teks='Add Data Users' title='Add Data User ' loading={loading} handlePost={postData} dataU={{ dataU, setDataU }} modal={{ showModal, setShowModal }}></ModalUser>
             <ModalUser teks='Update Data Users' title='Update Data User ' loading={loading} handlePost={handlePut} dataU={{ dataU : dataUe, setDataU:setDataUe }} modal={{ showModal: showModalUpdate, setShowModal: setShowModalUpdate }}></ModalUser>
             {data.length !== 0 ?

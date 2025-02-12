@@ -38,7 +38,7 @@ const Acces = ({ title, description, err,data,handle,loading }) => {
 
 
                             {
-                                title=='Register'?
+                                title=='Register' || title =="Register User"?
                                 
                                 <div>
                                 <label className="block mb-2 text-sm text-gray-800">

@@ -32,7 +32,6 @@ const Kendaraan = () => {
   })
 
 
-console.log(dataK)
     
 
   const urlKendaraan = 'http://localhost:3100/kendaraan/'

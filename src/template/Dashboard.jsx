@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaRegFileAlt, FaRegFileArchive } from 'react-icons/fa';
-import { FaHouse, FaBars, FaRegCircleUser, FaCar, FaRepeat } from "react-icons/fa6";
+import { FaHouse, FaBars, FaRegCircleUser, FaCar, FaGear } from "react-icons/fa6";
 import img from '../image/logo.png'
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -10,7 +10,6 @@ import { refreshToken } from '../service/refreshToken';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import Modal from './Modal';
-
 
 const Dashboard = ({ children, title }) => {
     const navigate = useNavigate();
@@ -42,7 +41,10 @@ const Dashboard = ({ children, title }) => {
     }, (err) => {
         return Promise.reject(err)
     })
-
+    // console.log(dataAdmin.role)
+    useEffect(() => {
+        //  localStorage.setItem('role')   
+    }, [])
 
 
     //?
@@ -57,15 +59,6 @@ const Dashboard = ({ children, title }) => {
         console.log(response.data.datas)
     }
 
-    // useEffect(() => {
-    //     const token = localStorage.getItem('token')
-    //     if (token === null) {
-    //         navigate('/')
-    //     } else {
-    //         setDataAdmin(jwtDecode(token))
-    //     }
-
-    // }, [])
 
 
     const [showProfile, setShowProfile] = useState(false)
@@ -135,27 +128,28 @@ const Dashboard = ({ children, title }) => {
                     <thead className='text-xs text-gray-700 uppercase'>
                         <tr>
 
-                        <th className="pb-3 pe-6">Status</th>
-                        <th className="pb-3 pe-6"> Nama </th>
-                        <th className="pb-3 pe-6">Email</th>
-                        <th className="pb-3 pe-6">Terkahir Login</th>
+                            <th className="pb-3 pe-6">Status</th>
+                            <th className="pb-3 pe-6"> Nama </th>
+                            <th className="pb-3 pe-6">Email</th>
+                            <th className="pb-3 pe-6">Terkahir Login</th>
                         </tr>
                     </thead>
                     <tbody className='text-gray-700'>
-                        
-                {dataAllAdmin.map((result, i) => (
-                    <tr key={i}>
-                        <td className='relative py-2 '>
-                            <span className={`size-[11px]  rounded-full ${result.id == dataAdmin.adminId ? 'bg-green-500':'bg-gray-500'} absolute left-0 top-[12px]`}></span>
-                            <p className='ps-4'>{result.id === dataAdmin.adminId?'Online':'Offline'}</p>
-                        </td>
-                        <td>{result.nama}</td>
-                        <td>{result.email}</td>
-                        <td>Hari Ini : ( 09.00 )</td>
-                    </tr>
-                
-                ))}
-                                    </tbody>
+
+                        {dataAllAdmin.map((result, i) => (
+                            <tr key={i}>
+                                <td className='relative py-2 '>
+                                    <span className={`size-[11px]  rounded-full ${result.id == dataAdmin.adminId ? 'bg-green-500' : 'bg-gray-500'} absolute left-0 top-[12px]`}></span>
+                                    <p className='ps-4'>{result.id === dataAdmin.adminId ? 'Online' : 'Offline'}</p>
+                                </td>
+                                <td>{result.nama}</td>
+                                <td>{result.email}</td>
+                                <td>Hari Ini : ( 09.00 )</td>
+                            </tr>
+
+                        ))}
+
+                    </tbody>
                 </table>
 
             </Modal>
@@ -258,7 +252,7 @@ const Dashboard = ({ children, title }) => {
                                             </a>
 
                                         </li>
-                                       
+
 
                                     </ul>
                                 </div>
@@ -287,6 +281,17 @@ const Dashboard = ({ children, title }) => {
                                 </li>
                             ))
                         }
+                        {dataAdmin ?
+                            dataAdmin.role === "Pemilik" ?
+                                <li  className='cursor-pointer'>
+                                    <Link to={'/admin'}>
+                                        <div className={`${'/admin' == title ? 'bg-white shadow-lg py-2.5 ' : ''}flex hover:shadow-lg hover:bg-white items-center gap-2 p-2 text-white rounded-lg  group`}>
+                                            <span className={`${'/admin' == title ? 'bg-cyan-500  group-hover:text-white' : 'bg-white '}flex items-center shadow-md justify-center p-3 transition group-hover:bg-cyan-500 group-hover:text-white duration-75 rounded-lg text-md  bg-cyan text-gray-400 `}><i className={`${'/admin' == title ? 'text-white  ' : 'text-gray-900 group-hover:text-white '}`}><FaGear/></i></span>
+                                            <span className={` ${'/admin' == title ? 'text-black' : 'text-gray-600 group-hover:text-black'} font-semibold  m7-3`}>{'Admin'}</span>
+                                        </div>
+                                    </Link>
+                                </li>
+                                : <></> : <></>}
 
 
 

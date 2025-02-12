@@ -1,5 +1,5 @@
 import React from 'react'
-import 'animate.css';
+
 import { useState } from 'react';
 const Alert = ({alerts,err}) => {
 

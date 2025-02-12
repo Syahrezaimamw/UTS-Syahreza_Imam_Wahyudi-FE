@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 
 
-const Table = ({ data, title, headers, setCurrentData, tambahData, children }) => {
+const Table = ({ data, title, headers, setCurrentData, tambahData,status, children }) => {
     // Pagination state
     const [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 7
@@ -10,7 +10,6 @@ const Table = ({ data, title, headers, setCurrentData, tambahData, children }) =
     // Menghitung indeks data yang akan ditampilkan
     const indexOfLastItem = currentPage * itemsPerPage
     const indexOfFirstItem = indexOfLastItem - itemsPerPage
-
 
     useEffect(() => {
         setCurrentData(data.slice(indexOfFirstItem, indexOfLastItem))
@@ -62,9 +61,11 @@ const Table = ({ data, title, headers, setCurrentData, tambahData, children }) =
                             </h1>
 
                         </div>
+                        {status==='user'?<></>:
                         <p className="mt-1 text-sm font-normal text-gray-800 ">
-                            Tabel berisi data {title} harap melakukan cek dan
+                            Tabel berisi data {title} harap melakukan cek dan kelola
                         </p>
+                        }
                        </div>
                         {tambahData ? tambahData : <></>}
                     </caption>

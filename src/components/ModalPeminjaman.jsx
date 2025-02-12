@@ -78,13 +78,7 @@ const ModalPeminjaman = ({ title, modal, data,dataAdmin, setTotal,handle,dataKen
       color: state.isSelected ? 'white' : 'black',
        // Mengatur padding per item dropdown
     }),
-  };
-
-
-
-  
-
-
+  };  
 
   return (
     <Modal title={title} modal={modal}>

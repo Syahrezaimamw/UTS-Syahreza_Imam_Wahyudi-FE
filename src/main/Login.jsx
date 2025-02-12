@@ -19,6 +19,7 @@ const Login = () => {
     },[])
 
 
+    
     const Auth = async (e) => {
         setLoading(true)
         try {
@@ -47,7 +48,7 @@ const Login = () => {
 
             }, 1000)
         }
-
+    
     }
 
 

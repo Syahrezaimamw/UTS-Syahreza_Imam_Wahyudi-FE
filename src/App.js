@@ -13,6 +13,13 @@ import Error from './main/Error';
 import './App.css'
 import Test from './components/Test';
 import LandingPage from './main/LandingPage';
+import RegisterUser from './main/RegisterUser';
+import Admin from './main/Admin';
+import LoginUser from './main/LoginUser';
+import UserSewa from './user/UserSewa';
+import History from './user/History';
+import PeminjamanUser from './user/PeminjamanUser';
+import PengembalianUser from './user/PengembalianUser';
 const App = () => {
   // dotenv.config ()
   return (
@@ -21,13 +28,22 @@ const App = () => {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/loginUser" element={<LoginUser />} />
+            <Route path="/registerUser" element={<RegisterUser />} />
             <Route path="/home" element={<Home />} />
             <Route path="/user" element={<User />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="/kendaraan" element={<Kendaraan />} />
             <Route path="/peminjaman" element={<Peminjaman />} />
             <Route path="/kendaraan/:id" element={<PerKendaraan />} />
             <Route path="/pengembalian/" element={<Pengembalian/>} />
             <Route path="/pengembalian/:id" element={<PerKembalian />} />
+
+            //?
+            <Route path="/dashUser" element={<UserSewa />} />
+            <Route path="/historyUser" element={<History />} />
+            <Route path="/peminjamanUser" element={<PeminjamanUser />} />
+            <Route path="/pengembalianUser" element={<PengembalianUser />} />
             <Route path="/test" element={<Test />} />
             <Route path="*" element={<Error/>} />
           </Routes>

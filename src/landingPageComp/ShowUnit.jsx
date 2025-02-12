@@ -21,7 +21,7 @@ const ShowUnit = () => {
         }
     }
 const handleClick=(item)=>{
-    const myData=localStorage.getItem('myData')
+    const myData=localStorage.getItem('dataUser')
     if(!myData){
         alert('Login Dengan Akun Yang Telah Ada')
     }else{
