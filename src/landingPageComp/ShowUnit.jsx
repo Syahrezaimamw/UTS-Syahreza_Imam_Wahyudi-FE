@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getAllData } from '../service/get'
 import { convertToRp } from '../service/currency'
+import { useNavigate } from 'react-router-dom'
 const ShowUnit = () => {
     const [data, setData] = useState([])
     const [jumlah, setJumlah] = useState(5)
@@ -20,12 +21,13 @@ const ShowUnit = () => {
             setJumlah(data.length)
         }
     }
+    const navigate=useNavigate()
 const handleClick=(item)=>{
     const myData=localStorage.getItem('dataUser')
     if(!myData){
         alert('Login Dengan Akun Yang Telah Ada')
     }else{
-        
+        navigate('/dashUser')
     }
 }
 

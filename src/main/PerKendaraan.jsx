@@ -82,8 +82,21 @@ const PerKendaraan = () => {
     
     //* update kendaraan
     function handlePut() {
-        setLoading(true)
-        updateAllData(url + `/update/${id}`, {...data,gambar:dataGambar}, (berhasil) => {
+        const datar={
+            nama:data.nama,
+            tipe:data.tipe,
+            merk:data.merk,
+            nomer_plat:data.nomer_plat,
+            status:data.status,
+            warna:data.warna,
+            tahun_pembuatan:data.tahun_pembuatan,
+            kategori:data.kategori,
+            harga:data.harga,
+        }
+        const dataU = {...datar,gambar:dataGambar}
+        const urll =url + `/update/${id}`
+        
+        updateAllData(urll, dataU, (berhasil) => {
             setLoading(true)
             setTimeout(() => {
                 window.location.href = '/UTS-Syahreza_Imam_Wahyudi-FE/kendaraan/' + id

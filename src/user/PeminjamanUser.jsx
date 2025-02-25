@@ -68,7 +68,7 @@ const PeminjamanUser = () => {
             </tr>
       ) }
       </Table>
-      :<>Belum Ada Data</>}
+      :<div className='w-full h-[500px] flex justify-center items-center text-2xl font-semibold text-gray-800'>Belum Ada Data</div>}
     </DashUser>
   )
 }

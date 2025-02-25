@@ -10,6 +10,7 @@ import { refreshToken } from '../service/refreshToken';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import Modal from './Modal';
+import imgp from '../image/photoProfile.png'
 
 const Dashboard = ({ children, title }) => {
     const navigate = useNavigate();
@@ -107,6 +108,28 @@ const Dashboard = ({ children, title }) => {
         },
 
     ]
+    const [dataProses, setDataProses] = useState([])
+    async function getData() {
+
+        try {
+
+            const Data = await axios.get('http://localhost:3100/notif/')
+            const fetchedData = Data.data.datas;
+            
+
+            const proses = fetchedData.filter(item => item.status === "Diminta");
+
+            setDataProses(proses);
+          
+        } catch (err) {
+            console.log(err)
+
+        }
+        
+    }
+    useEffect(()=>{
+        getData()
+    },[])
 
     function tanggal() {
         const date = new Date();
@@ -136,7 +159,7 @@ const Dashboard = ({ children, title }) => {
                             <th className="pb-3 pe-6">Status</th>
                             <th className="pb-3 pe-6"> Nama </th>
                             <th className="pb-3 pe-6">Email</th>
-                            <th className="pb-3 pe-6">Terkahir Login</th>
+                            <th className="pb-3 pe-6">Jabatan</th>
                         </tr>
                     </thead>
                     <tbody className='text-gray-700'>
@@ -149,7 +172,7 @@ const Dashboard = ({ children, title }) => {
                                 </td>
                                 <td>{result.nama}</td>
                                 <td>{result.email}</td>
-                                <td>Hari Ini : ( 09.00 )</td>
+                                <td>{result.role}</td>
                             </tr>
 
                         ))}
@@ -192,8 +215,8 @@ const Dashboard = ({ children, title }) => {
                                     >
                                         <span className="sr-only">Open user menu</span>
                                         <img
+                                        src={imgp}
                                             className="w-8 h-8 rounded-full"
-                                            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                                             alt="user photo"
                                         />
                                     </button>
@@ -246,6 +269,7 @@ const Dashboard = ({ children, title }) => {
 
                                         <li className='cursor-pointer' onClick={(a, i) => {
                                             Cookies.remove('refreshToken')
+                                            localStorage.removeItem('token')
                                             navigate('/');
                                         }}>
                                             <a
@@ -276,7 +300,11 @@ const Dashboard = ({ children, title }) => {
                     <ul className="space-y-2 font-medium ">
                         {
                             data.map((a, i) => (
-                                <li key={i} className='cursor-pointer'>
+                                <li key={i} className='relative cursor-pointer'>
+                                    {a.name === "Notifikasi"?
+                                    dataProses.length===0?<></>:
+                                    <p className='absolute top-0 left-0 flex items-center justify-center h-[22px] w-[22px] text-sm font-bold text-white bg-red-600 rounded-full jus'>{dataProses.length }</p>
+                                :<></>}
                                     <Link to={a.to}>
                                         <div className={`${a.name == title ? 'bg-white shadow-lg py-2.5 ' : ''}flex hover:shadow-lg hover:bg-white items-center gap-2 p-2 text-white rounded-lg  group`}>
                                             <span className={`${a.name == title ? 'bg-cyan-500  group-hover:text-white' : 'bg-white '}flex items-center shadow-md justify-center p-3 transition group-hover:bg-cyan-500 group-hover:text-white duration-75 rounded-lg text-md  bg-cyan text-gray-400 `}><i className={`${a.name == title ? 'text-white  ' : 'text-gray-900 group-hover:text-white '}`}>{a.ic}</i></span>

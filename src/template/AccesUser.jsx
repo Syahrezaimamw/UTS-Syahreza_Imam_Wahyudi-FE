@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Input from '../components/Input'
 import { FaArrowRight } from 'react-icons/fa6'
+import rentalbg from '../image/rental-mobil-.jpeg'
 
 const AccesUser = ({ page, data, err, sub }) => {
   function handleChange(e) {
@@ -11,7 +12,7 @@ const AccesUser = ({ page, data, err, sub }) => {
 
   }
   return (
-    <div className="bg-gray-50 font-[sans-serif]">
+    <div className=" font-[sans-serif] flex justify-between max-w-7xl mx-auto">
       <div className="flex flex-col items-center justify-center min-h-screen px-4 py-6">
         <div className="w-full max-w-md">
          
@@ -25,10 +26,10 @@ const AccesUser = ({ page, data, err, sub }) => {
 
             </h2>
             <form className="mt-8 space-y-4">
-              <div>
+              <div className='w-[400px]'>
                 <Input name='email' value={data.data.email} change={(e) => handleChange(e)} type={'text'} title={'Masukan Email'}></Input>
               </div>
-              <div>
+              <div className='w-[400px]'>
                 <Input name='password' value={data.data.password} change={(e) => handleChange(e)} type={'password'} title={'Masukan Password'}></Input>
               </div>
               {page === 'regis' ?
@@ -63,7 +64,12 @@ const AccesUser = ({ page, data, err, sub }) => {
                   type="button"
                   className="w-full px-4 py-3 text-sm tracking-wide text-white rounded-md shadow-lg bg-cyan-600 hover:bg-cyan-700 focus:outline-none"
                 >
-                  Sign in
+                   {
+                    page === 'loginUser' ?
+                     
+                      'Sign In' : 'Register' 
+                  }
+
                 </button>
                 <p className='text-center text-red-900'>{err.err}</p>
               </div>
@@ -89,6 +95,9 @@ const AccesUser = ({ page, data, err, sub }) => {
                   ''
               }
         </div>
+      </div>
+      <div className='h-[100vh] w-[48%]  flex justify-center items-center'>
+        <img src={rentalbg} alt="" />
       </div>
     </div>
 

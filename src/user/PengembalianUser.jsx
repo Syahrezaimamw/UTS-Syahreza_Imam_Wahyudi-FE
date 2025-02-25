@@ -28,7 +28,7 @@ const PengembalianUser = () => {
     
       ]
   return (
-    <DashUser title='pengembalian'>
+    <DashUser title='Pengembalian'>
        {data.length !== 0 ?
         <Table status={'user'} title={'Pengembalian'} headers={headTable} data={data} setCurrentData={setCurrentData}>
 
@@ -66,7 +66,7 @@ const PengembalianUser = () => {
               <></>
           }
         </Table>
-        : <></>}
+        :       <div className='w-full h-[500px] flex justify-center items-center text-2xl font-semibold text-gray-800'>Belum Ada Data</div>}
     </DashUser>
   )
 }

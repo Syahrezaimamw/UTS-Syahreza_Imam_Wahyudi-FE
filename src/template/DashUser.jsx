@@ -49,16 +49,19 @@ const DashUser = ({children,showSide,showProfile,title}) => {
 
                 <FaX onClick={()=>setModal(false)} className='text-sm cursor-pointer hover:text-red-900 text-end'/>
               </div>
-                <div className='flex gap-2'>
-                    <h1 className='font-semibold'>Username : </h1>
+                <div className='flex gap-2 '>
+                    <h1 className='font-semibold w-[68px]'>Username  </h1>
+                    <span className='font-semibold'>:</span>
                     <h1> {" "+dataku.nama}</h1>
                 </div>
                 <div className='flex gap-2 mt-1'>
-                    <h1 className='font-semibold'>Email : </h1>
+                <h1 className='font-semibold w-[68px]'>Email </h1>
+                <span className='font-semibold'>:</span>
                     <h1> {" "+dataku.email}</h1>
                 </div>
                 <div className='flex gap-2 mt-1'>
-                    <h1 className='font-semibold'>Not KTP : </h1>
+                <h1 className='font-semibold w-[68px]'>NO-KTP </h1>
+                <span className='font-semibold'>:</span>
                     <h1> {" "+dataku.no_ktp}</h1>
                 </div>
                 <div className='flex justify-end w-full mt-2 font-semibold text-red-600 cursor-pointer hover:underline'>

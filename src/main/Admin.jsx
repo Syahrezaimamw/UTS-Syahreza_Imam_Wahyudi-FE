@@ -44,7 +44,7 @@ const Admin = () => {
                 //   console.log('Data:', response.data.datas);
             })
             .catch(error => {
-                console.error('Error:', error);
+                window.localStorage.href = '/admin'
             })
     }
 

@@ -13,7 +13,9 @@ const ModalKendaraan = ({ title, modal, dataK, setDataGambar, handlePost, loadin
     function handleChangeImg(e) {
         const data = e.target.files[0]
         dataK.setDataK({ ...dataK.dataK, gambar: data })
+        setDataGambar(data)
         const view = URL.createObjectURL(data)
+        console.log(data)
 
 
         setPreview(view)
@@ -67,6 +69,7 @@ const ModalKendaraan = ({ title, modal, dataK, setDataGambar, handlePost, loadin
                         </label>
                         <select id='ketegori' name='kategori' className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-400 focus:border-cyan-400 block w-full p-2.5 outline-none "
                             value={dataK.dataK.kategori} onChange={(e) => handleChange(e)}>
+                            <option value=""></option>
                             <option value="Sepeda Motor">Sepeda Motor</option>
                             <option value="Mobil">Mobil</option>
                             <option value="Pickup">Pickup</option>
@@ -97,11 +100,14 @@ const ModalKendaraan = ({ title, modal, dataK, setDataGambar, handlePost, loadin
                         }
                     >
                         {/* Hanya tampilkan konten default jika belum ada preview */}
-                        {!preview && (
+                       
                             <div className="flex flex-col items-center justify-center pt-5 pb-6 overflow-hidden">
                                 {
+                                   
+                                    !preview?
                                     dataK.dataK.url ?
                                         <img src={dataK.dataK.url} alt="" />
+                                        // <div>sss</div>
                                         :
                                         <div>
 
@@ -127,10 +133,10 @@ const ModalKendaraan = ({ title, modal, dataK, setDataGambar, handlePost, loadin
                                                 SVG, PNG, JPG or GIF (MAX. 800x400px)
                                             </p>
                                         </div>
-
+:<></>
                                 }
                             </div>
-                        )}
+                      
                         <input
                             id="dropzone-file"
                             type="file"

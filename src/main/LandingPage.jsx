@@ -43,7 +43,7 @@ const LandingPage = () => {
         {/* <Containt2></Containt2> */}
         <Corousell ></Corousell>
         <Article/>
-        {/* <Map/> */}
+        <Map/>
         <Footer/>
       </div>
     </div>

@@ -23,7 +23,7 @@ const ModalNotifPemin = ({title,modal,data,sub}) => {
       <div className='flex justify-between w-full'>
 
         <div className='w-[48%]'>
-          <Input name='User' value={data ? data.User.nama : ''} change={(e) => { }} type={'teks'} title={'Total Harga Sewa'}></Input>
+          <Input name='User' value={data ? `${data.User.nama} (${data.User.no_ktp})`  : ''} change={(e) => { }} type={'teks'} title={'Penyewa'}></Input>
         </div>
         <div className='w-[48%]'>
           <Input name='total_harga' value={data ? convertToRp(data.total_harga) : ''} change={(e) => { }} type={'teks'} title={'Total Harga Sewa'}></Input>

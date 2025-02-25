@@ -103,11 +103,9 @@ const Kendaraan = () => {
   }
 
   function handleSearchKendaraan(value){
-    // console.log(btn)
     setSearchValue(value)
     if(value===''){
-    //   setBtnKosong(false)
-    //   setBtnPenuh(false)
+  
     }
     
     searchKendaraan(value,btn,(data)=>setData(data),(err)=>setData(err))
