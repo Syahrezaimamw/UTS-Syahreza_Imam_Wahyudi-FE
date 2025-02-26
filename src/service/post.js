@@ -18,6 +18,7 @@ export const postDataAllTable=async(url,data,berhasil,gagal)=>{
             gagal(error.response.data.message)
           });
       }
+      
 export const postDataAllKendaraan=async(url,data,berhasil,gagal)=>{
         return axios.post(url, data, {
           headers: { "Content-Type": "multipart/form-data" }

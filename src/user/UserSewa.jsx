@@ -6,12 +6,14 @@ import ModalNotif from '../components/ModalNotif'
 import { postDataAllTable } from '../service/post'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 const UserSewa = () => {
+  
   const [data, setData] = useState([])
   const [idK, setK] = useState()
   const [hargaK, setHargaK] = useState()
   const [modal, setModal] = useState(false)
   const idUser = JSON.parse(localStorage.getItem('dataUser'))
   const urlKendaraan = 'http://localhost:3100/kendaraan/'
+  
   useEffect(() => {
     getAllData(urlKendaraan).then((result) => setData(result))
   }, [])

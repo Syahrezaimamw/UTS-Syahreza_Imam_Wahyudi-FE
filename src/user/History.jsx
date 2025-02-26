@@ -10,6 +10,9 @@ const History = () => {
     const [dataGagal, setDataGagal] = useState([])
     const dataUser = JSON.parse(localStorage.getItem('dataUser'))
     const [dataProses, setDataProses] = useState([])
+    const [berhasil, setBerhasil] = useState(false)
+    const [gagal, setGagal] = useState(false)
+    
     async function getData() {
 
         try {
@@ -33,8 +36,8 @@ const History = () => {
         getData()
     }, [])
 
-    const [berhasil, setBerhasil] = useState(false)
-    const [gagal, setGagal] = useState(false)
+   
+    
     function batal(id){
         deleteData('http://localhost:3100/notif/delete/'+id,(berhasil)=>{
          console.log(berhasil)
